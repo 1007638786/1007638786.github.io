@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>xuezhongzhailu | Hexo</title>
+  <title>redis | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="xuezhongzhailu | Hexo">
+  <meta name="description" content="redis | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:type" content="article">
@@ -213,9 +213,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-xuezhongzhailu" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">xuezhongzhailu</h1>
+        <h1 class="article-title">redis</h1>
     
     <div class="article-meta">
         
@@ -225,7 +225,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-23 17:33:16'>2019-10-15 09:20</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-30 17:25:55'>2019-10-30 15:04</time>
         
     </div>
     <div class="article-meta">
@@ -263,7 +263,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="xuezhongzhailu/qwe.jpg" alt=""></p>
+        <p>#记linux安装redis  </p>
+<p><a href="https://redis.io/download（或者使用wget命令下载）" target="_blank" rel="noopener">https://redis.io/download（或者使用wget命令下载）</a><br>下载redis压缩包<br>通过xftp放到我的云上</p>
+<p>tar xzf 命令解压redis压缩包</p>
+<p>redis是c语言写的 安装gcc c语言环境（yum install gcc-c++）  </p>
+<p>cd进入redis文件夹中</p>
+<p>make 编译</p>
+<p>等待编译完成</p>
+<p>make install安装redis  </p>
+<p>找到redis.config文件 cp一份 放到新文件夹里方便管理   </p>
+<p>修改redis.config<br>daemonize 属性改为yes（redis后台运行）<br>注释 bind 127.0.0.1（注释之后可远程访问）<br>protected-mode 设置成no（yes状态下不可远程访问）<br>requirepass foobared（设置redis密码）</p>
+<p>/etc/rc.d/rc.local 可设置开机自动启动</p>
+<p>端口号默认6379</p>
+<p>常用命令<br>连接redis：redis-cli<br>auth + password<br>get  set   ping  quit     select+datebase</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -273,12 +285,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>xuezhongzhailu</p>
+    <p><span class="copy-title">文章标题:</span>redis</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-15, 09:20:08</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-23, 17:33:16</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/15/xuezhongzhailu/" title="xuezhongzhailu">http://1007638786.github.io/2019/10/15/xuezhongzhailu/</a>
+    <p><span class="copy-title">发布时间:</span>2019-10-30, 15:04:18</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-30, 17:25:55</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/30/redis/" title="redis">http://1007638786.github.io/2019/10/30/redis/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
