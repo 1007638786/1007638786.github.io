@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>微信小程序解密jdk修改问题 | Hexo</title>
+  <title>categories | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="微信小程序解密jdk修改问题 | Hexo">
+  <meta name="description" content="categories | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="最近公司开发微信小程序 解密获取手机号是 aes解密一报下面这个错java.security.NoSuchAlgorithmException: Cannot find any provider supporting AES&#x2F;CBC&#x2F;PKCS7Padding查询发现是java原生jdk不支持PKCS7Padding填充方式 也尝试过改成PKCS5Padding 还是报错在网上找到解决方法解决方式：">
 <meta property="og:type" content="article">
@@ -213,9 +213,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-微信小程序解密jdk修改问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">微信小程序解密jdk修改问题</h1>
+        <h1 class="article-title">categories</h1>
     
     <div class="article-meta">
         
@@ -225,7 +225,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-27 16:57:30'>2019-12-27 16:41</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-14 16:11:18'>2020-01-14 16:09</time>
         
     </div>
     <div class="article-meta">
@@ -263,30 +263,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近公司开发微信小程序 解密获取手机号是 aes解密一报下面这个错<br>java.security.NoSuchAlgorithmException: Cannot find any provider supporting AES/CBC/PKCS7Padding<br>查询发现是java原生jdk不支持PKCS7Padding填充方式</p>
-<p>也尝试过改成PKCS5Padding 还是报错<br>在网上找到解决方法<br>解决方式：    </p>
-<p>   在jdk安装目录中（%JAVA_HOME%\jre\lib\ext）添加 jar 包 bcprov-jdk16-1.46.jar。(我添加的是这个，下载的最新的，<a href="http://central.maven.org/maven2/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar" target="_blank" rel="noopener">jar包下载链接</a>)</p>
-<p>   在jdk安装目录下（ %JAVA_HOME%\jre\lib\security ）修改 java.security 文件，将第74行(我的是在74行)的 security.provider.7=com.sun.security.sasl.Provider<br>   替换为<br>   security.provider.7=org.bouncycastle.jce.provider.BouncyCastleProvider</p>
-<p>问题解决！</p>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
     </div>
 </article>
 
 
-
-<div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>微信小程序解密jdk修改问题</p>
-    
-    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-27, 16:41:04</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-27, 16:57:30</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/" title="微信小程序解密jdk修改问题">http://1007638786.github.io/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/</a>
-    <p>
-        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-    </p>
-</div>
 
 
 
