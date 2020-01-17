@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>aaa | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="aaa | Hexo">
+  <title>异常捕获 | Hexo</title>
+  <meta name="keywords" content=" 日常学习记录 ">
+  <meta name="description" content="异常捕获 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -239,19 +239,31 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-aaa" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-异常捕获" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">aaa</h1>
+        <h1 class="article-title">异常捕获</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">日常学习记录</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-27 17:05:32'>2019-10-15 10:09</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-17 17:37:38'>2020-01-17 17:32</time>
         
     </div>
     <div class="article-meta">
@@ -289,9 +301,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2019/10/15/aaa/qwe.jpg" class="" title="nothing">
+        <pre><code class="java">
+<span class="keyword">package</span> com.imooc.sell.handler;
 
-<p>markdown 引入图片测试</p>
+<span class="keyword">import</span> com.imooc.sell.config.ProjectUrl;
+<span class="keyword">import</span> com.imooc.sell.exception.SellerAuthorizeException;
+<span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;
+<span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;
+<span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+<span class="meta">@ControllerAdvice</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SellerAuthorizeExceptionHandler</span> </span>{
+
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> ProjectUrl projectUrl;
+
+    <span class="meta">@ExceptionHandler</span>(SellerAuthorizeException.class)
+    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handler</span><span class="params">()</span></span>{
+
+
+        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:"</span>
+                .concat(projectUrl.getWechatOpenAuthorize())
+                .concat(<span class="string">"/sell/seller/qrAuthorize?returnUrl="</span>)
+                .concat(projectUrl.getSell())
+                .concat(<span class="string">"/sell/seller/login"</span>));
+
+    }
+
+}</code></pre>
+<p>记录一下使用的异常捕获 </p>
+<pre><code class="java"><span class="meta">@ControllerAdvice</span></code></pre>
+<p>注解  配合 @ExceptionHandler(异常类class)</p>
+<p>可以统一处理某一种或者多种异常<br>在某些特定场景 配合自定义异常使用<br>非常好用      </p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -301,12 +343,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>aaa</p>
+    <p><span class="copy-title">文章标题:</span>异常捕获</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-15, 10:09:52</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-27, 17:05:32</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/15/aaa/" title="aaa">http://1007638786.github.io/2019/10/15/aaa/</a>
+    <p><span class="copy-title">发布时间:</span>2020-01-17, 17:32:02</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-17, 17:37:38</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/17/%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" title="异常捕获">http://1007638786.github.io/2020/01/17/%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
