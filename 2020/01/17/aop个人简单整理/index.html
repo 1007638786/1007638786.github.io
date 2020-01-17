@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>aaa | Hexo</title>
+  <title>aop个人简单整理 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="aaa | Hexo">
+  <meta name="description" content="aop个人简单整理 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -227,19 +227,25 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-aaa" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-aop个人简单整理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">aaa</h1>
+        <h1 class="article-title">aop个人简单整理</h1>
     
     <div class="article-meta">
         
         
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="慕课网学习知识点记录 1模拟点餐系统">慕课网学习知识点记录 1模拟点餐系统</a>
+            
+        </span>
         
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-27 17:05:32'>2019-10-15 10:09</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-17 11:21:43'>2020-01-17 09:44</time>
         
     </div>
     <div class="article-meta">
@@ -277,9 +283,91 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2019/10/15/aaa/qwe.jpg" class="" title="nothing">
+        <p>定义切面类：在类上添加@Aspect 和@Component 注解即可将一个类定义为切面类。<br>@Aspect 注解 使之成为切面类<br>@Component 注解 把切面类加入到IOC容器中      </p>
+<p>Controller代码    </p>
+<pre><code class="java">
 
-<p>markdown 引入图片测试</p>
+
+<span class="meta">@Controller</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopController</span> </span>{
+
+    <span class="meta">@RequestMapping</span>(<span class="string">"test"</span>)
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">aaa</span><span class="params">()</span></span>{
+        System.out.println(<span class="string">"我是aaa方法体"</span>);
+        <span class="keyword">int</span> i=<span class="number">1</span>/<span class="number">0</span>;
+    }
+
+    <span class="meta">@RequestMapping</span>(<span class="string">"testAround"</span>)
+    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">aroundAopTest</span><span class="params">(String param)</span></span>{
+        System.out.println(<span class="string">"环绕通知参数:"</span>+param);
+    }
+
+}         
+</code></pre>
+<p>切面类代码     </p>
+<pre><code class="java">
+<span class="keyword">package</span> com.wcf.aop.Aspect;
+
+<span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;
+<span class="keyword">import</span> org.aspectj.lang.annotation.*;
+<span class="keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="keyword">import</span> javax.annotation.PostConstruct;
+
+<span class="meta">@Component</span>
+<span class="meta">@Aspect</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopAspect</span> </span>{
+
+    <span class="meta">@Pointcut</span>(<span class="string">"execution ( public * com.wcf.aop.Controller.Aop*.*(..) )"</span>)
+    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">testAspect</span><span class="params">()</span></span>{
+
+    }
+    <span class="meta">@Pointcut</span>(<span class="string">"execution ( public * com.wcf.aop.Controller.AopController.aroundAopTest(String) ) &amp;&amp; args(param)"</span>)
+    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">aroundAspect</span><span class="params">(String param)</span></span>{
+
+    }
+
+    <span class="meta">@Before</span>(<span class="string">"testAspect()"</span>)
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">before</span><span class="params">()</span></span>{
+        System.out.println(<span class="string">"我在你前面执行"</span>);
+    }
+    <span class="meta">@After</span>(<span class="string">"testAspect()"</span>)
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>   <span class="title">after</span><span class="params">()</span></span>{
+        System.out.println(<span class="string">"我在你后面执行"</span>);
+    }
+
+
+
+    <span class="meta">@AfterThrowing</span>(<span class="string">"testAspect()"</span>)
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterThrowingGame</span><span class="params">()</span></span>{
+        System.out.println(<span class="string">"出异常我就执行了"</span>);
+    }
+
+    <span class="meta">@Around</span>(<span class="string">"aroundAspect(param)"</span>)
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Around</span><span class="params">(ProceedingJoinPoint pjp,String param)</span></span>{
+        <span class="keyword">try</span> {
+            System.out.println(<span class="string">"我在环绕通知方法体前面运行"</span>);
+            pjp.proceed();
+            System.out.println(<span class="string">"aop环绕通知获取方法体参数："</span>+param);
+            System.out.println(<span class="string">"我在环绕通知方法体后面运行"</span>);
+        } <span class="keyword">catch</span> (Throwable throwable) {
+            System.out.println(<span class="string">"我在环绕通知方法体报错我运行了"</span>);
+            throwable.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+}
+</code></pre>
+<p>pointcut（）中切面规则      </p>
+<p><img src="aaa.png" alt="">    </p>
+<p>无报错环绕通知运行结果<br><img src="bbb.png" alt="">   </p>
+<p>有报错环绕通知结果<br><img src="ccc.png" alt=""></p>
+<p>对比代码和结果 运行顺序就一目了然了  很好理解 记录一下   </p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -289,12 +377,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>aaa</p>
+    <p><span class="copy-title">文章标题:</span>aop个人简单整理</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-10-15, 10:09:52</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-27, 17:05:32</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/15/aaa/" title="aaa">http://1007638786.github.io/2019/10/15/aaa/</a>
+    <p><span class="copy-title">发布时间:</span>2020-01-17, 09:44:03</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-17, 11:21:43</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/17/aop%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/" title="aop个人简单整理">http://1007638786.github.io/2020/01/17/aop%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
