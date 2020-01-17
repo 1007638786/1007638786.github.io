@@ -46,6 +46,16 @@
   <input class="theme_preload_comment" value="false">
   <input class="theme_blog_path" value="">
 </div>
+<script>
+    (function(){
+        if('{{ page.password }}'){
+            if (prompt('请输入文章密码') !== '{{ page.password }}'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <body>
 <aside class="nav mobile">
