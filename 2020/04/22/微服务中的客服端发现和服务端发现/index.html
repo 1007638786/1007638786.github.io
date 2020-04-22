@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>eureka的高可用 | Hexo</title>
+  <title>微服务中的客服端发现和服务端发现 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="eureka的高可用 | Hexo">
+  <meta name="description" content="微服务中的客服端发现和服务端发现 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -300,9 +300,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-eureka的高可用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-微服务中的客服端发现和服务端发现" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">eureka的高可用</h1>
+        <h1 class="article-title">微服务中的客服端发现和服务端发现</h1>
     
     <div class="article-meta">
         
@@ -318,7 +318,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-21 15:25:42'>2020-04-21 15:18</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-22 11:06:20'>2020-04-22 10:45</time>
         
     </div>
     <div class="article-meta">
@@ -356,12 +356,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>springcloud eureka的高可用;</p>
-<p>“高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。”</p>
-<p>实际过程中,很常见的一个问题,eureka作为springcloud的注册中心,万一挂了怎么办？</p>
-<p>我们可以想到集群的方式,<br>@EnableEurekaServer这个注解中我们可以看到它包含@EnableDiscoveryClient这个注解说明它本身也是一个client端<br>我们可以把多个eureka相互注册。比如有3个eureka a b c；<br>a往bc  b往ac  c往ab 注册 这样就可以保证一旦其中一个点挂掉 系统依旧可以正常运行;      </p>
-<p>如果一个client只往a上注册 abc还未通讯时候a就挂了，这时候依旧无法访问到client服务。 怎么办？    </p>
-<p>只需要client端往abc3个eureka上注册即可，及时上述情况出现依旧可以正常使用，保证了系统的高可用！</p>
+        <ul>
+<li><strong>客户端发现</strong></li>
+<li><strong>服务端发现</strong>    </li>
+<li>*<font size=7>服务端发现</font>**<br><img src="kehuduan.webp" alt=""><br>b服务每次启动往注册中心注册;<br>a需要调用b时请求注册中心,注册中心会把可用的b的列表给到a，a自行决定调用哪些数据；</li>
+<li>不需要代理介入</li>
+<li>客户端知道所有服务端的ip地址</li>
+<li>客户端需要自己实现负载均衡    </li>
+<li>*<font size=5>客户端发现例子</font>**    </li>
+<li>eureka    </li>
+<li>*<font size=7>服务端发现</font>**<br><img src="fuwuduan.webp" alt=""><br>相比客户端发现，服务端发现多了一个代理，a只需要访问代理，代理会从众多的b中挑选一个出来给a；</li>
+<li>代理的介入，a不能看到b的所有服务的服务地址</li>
+<li>不需要a自己做负载均衡</li>
+<li>对比客户端发现来说多了一部分网络跳转       </li>
+<li>*<font size=5>服务端发现例子</font>**   </li>
+<li>Nginx</li>
+<li>ZooKeeper</li>
+<li>Kubernetes</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -371,12 +383,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>eureka的高可用</p>
+    <p><span class="copy-title">文章标题:</span>微服务中的客服端发现和服务端发现</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-04-21, 15:18:02</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-21, 15:25:42</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/21/eureka%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/" title="eureka的高可用">http://1007638786.github.io/2020/04/21/eureka%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8/</a>
+    <p><span class="copy-title">发布时间:</span>2020-04-22, 10:45:11</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-22, 11:06:20</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%9C%8D%E7%AB%AF%E5%8F%91%E7%8E%B0%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E7%8E%B0/" title="微服务中的客服端发现和服务端发现">http://1007638786.github.io/2020/04/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84%E5%AE%A2%E6%9C%8D%E7%AB%AF%E5%8F%91%E7%8E%B0%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E7%8E%B0/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
