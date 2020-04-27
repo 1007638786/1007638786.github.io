@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>微信小程序解密jdk修改问题 | Hexo</title>
+  <title>springcloud服务间的通-feign | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="微信小程序解密jdk修改问题 | Hexo">
+  <meta name="description" content="springcloud服务间的通-feign | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -316,9 +316,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-微信小程序解密jdk修改问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-springcloud服务间的通-feign" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">微信小程序解密jdk修改问题</h1>
+        <h1 class="article-title">springcloud服务间的通-feign</h1>
     
     <div class="article-meta">
         
@@ -328,7 +328,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-27 16:57:30'>2019-12-27 16:41</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-27 16:55:49'>2020-04-27 16:33</time>
         
     </div>
     <div class="article-meta">
@@ -366,11 +366,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近公司开发微信小程序 解密获取手机号是 aes解密一报下面这个错<br>java.security.NoSuchAlgorithmException: Cannot find any provider supporting AES/CBC/PKCS7Padding<br>查询发现是java原生jdk不支持PKCS7Padding填充方式</p>
-<p>也尝试过改成PKCS5Padding 还是报错<br>在网上找到解决方法<br>解决方式：    </p>
-<p>   在jdk安装目录中（%JAVA_HOME%\jre\lib\ext）添加 jar 包 bcprov-jdk16-1.46.jar。(我添加的是这个，下载的最新的，<a href="http://central.maven.org/maven2/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar" target="_blank" rel="noopener">jar包下载链接</a>)</p>
-<p>   在jdk安装目录下（ %JAVA_HOME%\jre\lib\security ）修改 java.security 文件，将第74行(我的是在74行)的 security.provider.7=com.sun.security.sasl.Provider<br>   替换为<br>   security.provider.7=org.bouncycastle.jce.provider.BouncyCastleProvider</p>
-<p>问题解决！</p>
+        <p><strong>Feign</strong><br>Feign上的使用个人感觉比RestTemplate简单不少<br>首先是引入依赖<br><img src="yilai.png" alt=""><br>然后在服务使用方的启动主类加上@EableFeignClients<br><img src="qidonglei.png" alt=""><br>然后服务提供方就正常写一下controller逻辑，因为Feign最终是使用http来实现服务间的调用<br><img src="product.png" alt=""><br>最后服务使用方（叫消费方也行）这边是一个接口的方式，配合注解@FeignClient(name=”springcloud服务的名字”)    然后方法上的@GetMapping和@PostMapping中的内容要和服务提供方路径一样.<br><img src="order.png" alt=""></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -380,12 +376,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>微信小程序解密jdk修改问题</p>
+    <p><span class="copy-title">文章标题:</span>springcloud服务间的通-feign</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-27, 16:41:04</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-27, 16:57:30</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/" title="微信小程序解密jdk修改问题">http://1007638786.github.io/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/</a>
+    <p><span class="copy-title">发布时间:</span>2020-04-27, 16:33:25</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-27, 16:55:49</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/27/springcloud%E6%9C%8D%E5%8A%A1%E9%97%B4%E7%9A%84%E9%80%9A-feign/" title="springcloud服务间的通-feign">http://1007638786.github.io/2020/04/27/springcloud%E6%9C%8D%E5%8A%A1%E9%97%B4%E7%9A%84%E9%80%9A-feign/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
