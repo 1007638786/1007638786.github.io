@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>springboot集成websocket | Hexo</title>
-  <meta name="keywords" content=" 日常学习记录 ">
-  <meta name="description" content="springboot集成websocket | Hexo">
+  <title>SpringCloudConfigServer和Client记录 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="SpringCloudConfigServer和Client记录 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -324,9 +324,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-springboot集成websocket" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-SpringCloudConfigServer和Client记录" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">springboot集成websocket</h1>
+        <h1 class="article-title">SpringCloudConfigServer和Client记录</h1>
     
     <div class="article-meta">
         
@@ -334,21 +334,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+                <a href="javascript:" data-rel="springcloud">springcloud</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color2">日常学习记录</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-19 18:12:38'>2020-01-19 16:41</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-01 09:57:56'>2020-05-01 09:43</time>
         
     </div>
     <div class="article-meta">
@@ -386,23 +380,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="first.png" alt=""><br>为什么有了http协议我们还需要websocket协议呢<br>答案很简单，因为 HTTP 协议有一个缺陷：<strong>通信只能由客户端发起</strong>，HTTP 协议做不到服务器主动向客户端推送信息。<br><img src="second.png" alt=""><br>springboo对WebSocket有良好的支持 直接引入 spring-boot-starter-websocket（spirngboot 开发不要太爽）<br>WebSocketConfig<br>启用WebSocket的支持也是很简单，几句代码搞定     </p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.imooc.sell.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.server.standard.ServerEndpointExporter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.rmi.server.ServerCloneException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServerEndpointExporter <span class="title">serverEndpointExporter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">new</span> ServerEndpointExporter();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>  重点来了<br>  WebSocketServer               </p>
+        <ul>
+<li><strong>SpringCloudConfigServer</strong><br>还是SpringCloud引用组件的老套路.我自己总结的</li>
+</ul>
 <ol>
-<li>可以把这个类看成一个ws协议的controller   </li>
-<li>关键注解 @ServerEndpoint(“/webSocket”)（一定要加前面的/不加就报错！ 大坑啊）  再加上   @Component就可以启用了  @OnOpen开启连接   @OnClose关闭连接   @OmMessage接受消息                  </li>
-<li>新建一个set 用来存储websocket方便推送信息               </li>
-<li>顺便一提 消息提醒类的需求 最好直接在方法上trycatch 不要抛 因为它毕竟只是一个消息提醒就算没有 也不能影响修改状态之类的主方法运行 不然就得不偿失  当然也得根据实际需求来   </li>
-<li>需要消息推送的时候直接调用sendmessage就ok了.                         </li>
+<li><p>引入组件依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>需要的在启动类加上注解这次的是@EableConfigServer</p>
+</li>
+<li><p>加上相应的配置<br><img src="Server.png" alt="">       </p>
+</li>
 </ol>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="keyword">package</span> com.imooc.sell.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.websocket.OnClose;</span><br><span class="line"><span class="keyword">import</span> javax.websocket.OnMessage;</span><br><span class="line"><span class="keyword">import</span> javax.websocket.OnOpen;</span><br><span class="line"><span class="keyword">import</span> javax.websocket.Session;</span><br><span class="line"><span class="keyword">import</span> javax.websocket.server.ServerEndpoint;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CopyOnWriteArraySet;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ServerEndpoint</span>(<span class="string">"/webSocket"</span>)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocket</span> </span>&#123;</span><br><span class="line"><span class="comment">/**与某个客户端的连接会话，需要通过它来给客户端发送数据*/</span></span><br><span class="line">    <span class="keyword">private</span> Session session;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CopyOnWriteArraySet&lt;WebSocket&gt; webSocketSet = <span class="keyword">new</span> CopyOnWriteArraySet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 建立连接</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@OnOpen</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOpen</span><span class="params">(Session session)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.session=session;</span><br><span class="line">        webSocketSet.add(<span class="keyword">this</span>);</span><br><span class="line">        log.info(<span class="string">"【websocket消息】有新的连接, 总数:&#123;&#125;"</span>, webSocketSet.size());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 关闭连接</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@OnClose</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">onClose</span><span class="params">()</span></span>&#123;</span><br><span class="line">        webSocketSet.remove(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">"【websocket消息】有新的连接, 总数:&#123;&#125;"</span>, webSocketSet.size());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 有消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@OnMessage</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"【websocket消息】收到客户端发来的消息:&#123;&#125;"</span>, message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (WebSocket webSocket:webSocketSet)&#123;</span><br><span class="line">            log.info(<span class="string">"【websocket消息】广播消息, message=&#123;&#125;"</span>, message);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                webSocket.session.getBasicRemote().sendText(message);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>js代码     </p>
-<ol>
-<li>首先判断浏览器是否支持websocket   太古老的浏览器不支持      </li>
-<li>一次写上 建立连接  关闭连接 收到消息时候  websocket发生错误 的方法    </li>
-<li>在onmessage的方法里写上自己需要的逻辑代码 一般都是弹框之类的       </li>
-<li>在离开页面之前要一定关闭websocket           </li>
-</ol>
-<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> websocket = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'WebSocket'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        websocket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://hhwan.natapp1.cc/sell/webSocket'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'该浏览器不支持websocket!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    websocket.onopen = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'建立连接'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    websocket.onclose = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'连接关闭'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    websocket.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'收到消息:'</span> + event.data);</span><br><span class="line">        $(<span class="string">'#wbmessage'</span>).append(<span class="string">"订单号:"</span>+event.data);</span><br><span class="line">        <span class="built_in">console</span>.log();</span><br><span class="line">           <span class="comment">/*弹窗提醒, 播放音乐*/</span></span><br><span class="line">        $(<span class="string">'#myModal'</span>).modal(<span class="string">'show'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'notice'</span>).play();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    websocket.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'websocket通信发生错误！'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.onbeforeunload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        websocket.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></code></pre>
+<p>git那边的操作就不贴了 </p>
+<p>ConfigServer从git拉取配置文件的命名方式<br><img src="ServerGit.ong" alt=""><br>第一种默认master分支下<br>name服务名  profiles环境  举例子 order-test(order服务测试环境)<br>根据名字访问到需要的配置文件，而且不需要重启究极方便！   </p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
     </div>
@@ -411,12 +403,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>springboot集成websocket</p>
+    <p><span class="copy-title">文章标题:</span>SpringCloudConfigServer和Client记录</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-19, 16:41:22</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-19, 18:12:38</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/19/springboot%E9%9B%86%E6%88%90websocket/" title="springboot集成websocket">http://1007638786.github.io/2020/01/19/springboot%E9%9B%86%E6%88%90websocket/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-01, 09:43:44</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-01, 09:57:56</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/" title="SpringCloudConfigServer和Client记录">http://1007638786.github.io/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
