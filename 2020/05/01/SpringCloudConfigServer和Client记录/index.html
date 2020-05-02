@@ -108,11 +108,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(16)</small></div></li>
+    <li><div class="all active">全部文章<small>(17)</small></div></li>
     
         
             
-            <li><div data-rel="springcloud">springcloud<small>(6)</small></div>
+            <li><div data-rel="springcloud">springcloud<small>(7)</small></div>
                 
             </li>
             
@@ -136,7 +136,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="16">
+<input type="hidden" id="yelog_site_posts_number" value="17">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -183,6 +183,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="springcloud "
+           href="/2020/05/02/SpirngCloudConfigCLient%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BB%86%E8%8A%82/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpirngCloudConfigCLient的使用及细节">SpirngCloudConfigCLient的使用及细节</span>
+            <span class="post-date" title="2020-05-02 15:12:41">2020/05/02</span>
+        </a>
         
         <a  class="springcloud "
            href="/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/"
@@ -342,7 +350,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-01 10:14:58'>2020-05-01 09:43</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-02 15:50:51'>2020-05-01 09:43</time>
         
     </div>
     <div class="article-meta">
@@ -394,6 +402,9 @@
 </ol>
 <p>git那边的操作就不贴了 </p>
 <p>ConfigServer从git拉取配置文件的命名方式<br><img src="ServerGit.png" alt=""><br>第一种默认master分支下<br>name服务名  profiles环境  举例子 order-test(order服务测试环境)<br>根据名字访问到需要的配置文件，而且不需要重启究极方便！   </p>
+<ul>
+<li>ConfigServer的高可用<br>其实这个很容易能想到，首先ConfigServer是一个springcloud的client在Eureka（微服务的高可用）的高可用中我就提到，client挂掉那么久多启动几个client同时往eureka上注册，ConfigClient是通过ConfigServer在Eureka上注册的注册名来通过eureka找到ConfigServer服务。</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -407,7 +418,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
     <p><span class="copy-title">发布时间:</span>2020-05-01, 09:43:44</p>
-    <p><span class="copy-title">最后更新:</span>2020-05-01, 10:14:58</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-02, 15:50:51</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/" title="SpringCloudConfigServer和Client记录">http://1007638786.github.io/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
