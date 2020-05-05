@@ -108,19 +108,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(21)</small></div></li>
+    <li><div class="all active">全部文章<small>(20)</small></div></li>
     
         
             
-            <li><div data-rel="spirngcloud">spirngcloud<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="springcloud">springcloud<small>(8)</small></div>
+            <li><div data-rel="springcloud">springcloud<small>(9)</small></div>
                 
             </li>
             
@@ -144,7 +136,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="21">
+<input type="hidden" id="yelog_site_posts_number" value="20">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -200,14 +192,6 @@
             <span class="post-date" title="2020-05-05 15:17:54">2020/05/05</span>
         </a>
         
-        <a  class="spirngcloud "
-           href="/2020/05/05/SpirngCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="SpringCloudStream消息驱动">SpringCloudStream消息驱动</span>
-            <span class="post-date" title="2020-05-05 15:57:02">2020/05/05</span>
-        </a>
-        
         <a  class="springcloud "
            href="/2020/05/03/SpringCloudBus%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"
            data-tag=""
@@ -232,7 +216,7 @@
             <span class="post-date" title="2020-05-01 09:43:44">2020/05/01</span>
         </a>
         
-        <a  class="spirngcloud "
+        <a  class="springcloud "
            href="/2020/05/05/SpringCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/"
            data-tag=""
            data-author="" >
@@ -382,7 +366,7 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="spirngcloud">spirngcloud</a>
+                <a href="javascript:" data-rel="springcloud">springcloud</a>
             
         </span>
         
@@ -390,7 +374,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-05 16:36:37'>2020-05-05 15:57</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-05 17:18:08'>2020-05-05 15:57</time>
         
     </div>
     <div class="article-meta">
@@ -429,7 +413,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>SpringCloudStream</li>
+<li><p>SpringCloudStream    </p>
+<ol>
+<li><p>引入maven依赖      </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-stream-rabbit&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>新增配置文件<br>destination: minestream 通过这个配置吧输出和输入队列保持在一个主题上<br>group分组   我们经常会遇到一个场景 abc 全是订单服务 order  他的前置服务发出一个消息我们通常只需要一个服务来消费这个消息 这时候我们就需要把这个3个服务配置成一个组  每当有消息来的时候 stream会帮我们把消息发给一个服务      </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">stream:</span><br><span class="line">  bindings:</span><br><span class="line">    #消息分组  是自定义命名和Streamclient里面保持一致</span><br><span class="line">    myInPut:</span><br><span class="line">      #指定输入通道对应的主题名</span><br><span class="line">      destination: minestream</span><br><span class="line">#配置组</span><br><span class="line">      group: order</span><br><span class="line">    myOutPut:</span><br><span class="line">      #指定输入通道对应的主题名</span><br><span class="line">      destination: minestream</span><br><span class="line">      #使消息在mq中存储为application/json的格式</span><br><span class="line">      #content-type: application/json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<br>添加一个接口<br><img src="inteface.png" alt=""><br>如何消费<br>首先用注解绑定刚才写的接口（@EnableBinding（xxx.class））<br>然后在方法上监听输入队列(@StreamLstener（输入队列）)<br><img src="listener.png" alt=""><br>如何发送消息<br>把写的接口注入进来调用output().send(使用MessageBuild创建message)方法<br><img src="sendMessage.png" alt=""></p>
+</li>
+</ol>
+</li>
 </ul>
 
       
@@ -444,7 +438,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
     <p><span class="copy-title">发布时间:</span>2020-05-05, 15:57:02</p>
-    <p><span class="copy-title">最后更新:</span>2020-05-05, 16:36:37</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-05, 17:18:08</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/05/SpringCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/" title="SpringCloudStream消息驱动">http://1007638786.github.io/2020/05/05/SpringCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
