@@ -108,7 +108,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(19)</small></div></li>
+    <li><div class="all active">全部文章<small>(21)</small></div></li>
+    
+        
+            
+            <li><div data-rel="spirngcloud">spirngcloud<small>(2)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -136,7 +144,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_posts_number" value="21">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -192,12 +200,12 @@
             <span class="post-date" title="2020-05-05 15:17:54">2020/05/05</span>
         </a>
         
-        <a  class="springcloud "
-           href="/2020/05/02/SpirngCloudConfigCLient%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BB%86%E8%8A%82/"
+        <a  class="spirngcloud "
+           href="/2020/05/05/SpirngCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="SpirngCloudConfigCLient的使用及细节">SpirngCloudConfigCLient的使用及细节</span>
-            <span class="post-date" title="2020-05-02 15:12:41">2020/05/02</span>
+            <span class="post-title" title="SpringCloudStream消息驱动">SpringCloudStream消息驱动</span>
+            <span class="post-date" title="2020-05-05 15:57:02">2020/05/05</span>
         </a>
         
         <a  class="springcloud "
@@ -209,11 +217,35 @@
         </a>
         
         <a  class="springcloud "
+           href="/2020/05/02/SpringCloudConfigCLient%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BB%86%E8%8A%82/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpirngCloudConfigCLient的使用及细节">SpirngCloudConfigCLient的使用及细节</span>
+            <span class="post-date" title="2020-05-02 15:12:41">2020/05/02</span>
+        </a>
+        
+        <a  class="springcloud "
            href="/2020/05/01/SpringCloudConfigServer%E5%92%8CClient%E8%AE%B0%E5%BD%95/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="SpringCloudConfigServer和Client记录">SpringCloudConfigServer和Client记录</span>
             <span class="post-date" title="2020-05-01 09:43:44">2020/05/01</span>
+        </a>
+        
+        <a  class="spirngcloud "
+           href="/2020/05/05/SpringCloudStream%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudStream消息驱动">SpringCloudStream消息驱动</span>
+            <span class="post-date" title="2020-05-05 15:57:02">2020/05/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/15/aaa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="aaa">aaa</span>
+            <span class="post-date" title="2019-10-15 10:09:52">2019/10/15</span>
         </a>
         
         <a  class="日常学习记录 "
@@ -328,14 +360,6 @@
             <span class="post-date" title="2019-12-09 17:22:23">2019/12/09</span>
         </a>
         
-        <a  class=""
-           href="/2019/10/15/aaa/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="aaa">aaa</span>
-            <span class="post-date" title="2019-10-15 10:09:52">2019/10/15</span>
-        </a>
-        
     </nav>
 </div>
     </div>
@@ -360,7 +384,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-05 15:54:01'>2020-05-05 15:17</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-05 16:36:07'>2020-05-05 15:17</time>
         
     </div>
     <div class="article-meta">
@@ -401,23 +425,36 @@
         <ul>
 <li><p>记录一下RabbitMQ+SpirngBoot的基础使用</p>
 <ol>
-<li>引入maven配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li>修改yml配置文件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq:</span><br><span class="line">  host: <span class="string">"ip"</span></span><br><span class="line">  port: <span class="number">5672</span>(端口默认一般都是<span class="number">5672</span>)</span><br><span class="line">  username: <span class="string">"guest"</span></span><br><span class="line">  password: <span class="string">"guest"</span></span><br></pre></td></tr></table></figure></li>
-<li>消息消费<br>三种方式   <ol>
+<li><p>引入maven配置    </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改yml配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq:</span><br><span class="line">  host: <span class="string">"ip"</span></span><br><span class="line">  port: <span class="number">5672</span>(端口默认一般都是<span class="number">5672</span>)</span><br><span class="line">  username: <span class="string">"guest"</span></span><br><span class="line">  password: <span class="string">"guest"</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li><p>消息消费<br>三种方式   </p>
+<ol>
 <li>@RabbitListener(queues = “myqueue”) 仅连接队列不自动创建队列如果队列不存在就会报错</li>
 <li>@RabbitListener(queuesToDeclare = @Queue(“myqueue”))自动创建和连接队列</li>
 <li>@RabbitListener(bindings = @QueueBinding(<pre><code>value = @Queue(&quot;myqueue&quot;)
- ,exchange = @Exchange(&quot;myExchange&quot;)</code></pre>))自动创建队列和连接队列并且绑定exchange    </li>
+ ,exchange = @Exchange(&quot;myExchange&quot;)</code></pre> ))自动创建队列和连接队列并且绑定exchange   </li>
 </ol>
-<strong>如果我有大的订单服务,订单服务下有水果服务和电脑服务，他们两个只想接受和自己有关的消息，应该如何配置。</strong><br>@RabbitListener(bindings = @QueueBinding(<pre><code>value = @Queue(&quot;水果订单/电脑订单&quot;)
-  , key=&quot;订单/水果&quot;
- ,exchange = @Exchange(&quot;订单的exchange&quot;)</code></pre>   ))<br>使用订单的exchange 但是队列和key设置成水果/电脑相应的,并且消息发送方也要有相应的改变<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqReceiver</span> </span>&#123;</span><br><span class="line">    <span class="comment">//@RabbitListener(queues = "myqueue") 仅连接队列不自动创建队列如果队列不存在就会报错</span></span><br><span class="line">    <span class="comment">//@RabbitListener(queuesToDeclare = @Queue("myqueue"))自动创建和连接队列</span></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"myqueue"</span>)</span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"myExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">process</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"computerqueue"</span>),</span><br><span class="line">            key = <span class="string">"computer"</span></span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"orderExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">computer</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"fruitQueue"</span>),</span><br><span class="line">            key = <span class="string">"fruit"</span></span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"orderExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">fruit</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>消息发起<br>消息发起的关键主要是使用amqpTemplate.convertAndSend方法<br>直接写一个测试类方便测试    </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AmqpTemplate amqpTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	void convertAndSend(String routingKey, Object message) throws AmqpException;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"myqueue"</span>,<span class="string">"now"</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//void convertAndSend(String exchange, String routingKey, Object message) throws AmqpException;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessageToComputer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"orderExchange"</span>,<span class="string">"computer"</span>,<span class="string">"nowcomputer "</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessageTofruit</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"orderExchange"</span>,<span class="string">"fruit"</span>,<span class="string">"nowfruit "</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>如果我有大的订单服务,订单服务下有水果服务和电脑服务，他们两个只想接受和自己有关的消息，应该如何配置。</strong><br> @RabbitListener(bindings = </p>
+<pre><code>      @QueueBinding(value = @Queue(&quot;水果订单/电脑订单&quot;)
+      , key=&quot;订单/水果&quot;
+     ,exchange = @Exchange(&quot;订单的exchange&quot;)
+))</code></pre><p> 使用订单的exchange 但是队列和key设置成水果/电脑相应的,并且消息发送方也要有相应的改变       </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqReceiver</span> </span>&#123;</span><br><span class="line">    <span class="comment">//@RabbitListener(queues = "myqueue") 仅连接队列不自动创建队列如果队列不存在就会报错</span></span><br><span class="line">    <span class="comment">//@RabbitListener(queuesToDeclare = @Queue("myqueue"))自动创建和连接队列</span></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"myqueue"</span>)</span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"myExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">process</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"computerqueue"</span>),</span><br><span class="line">            key = <span class="string">"computer"</span></span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"orderExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">computer</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">            value = <span class="meta">@Queue</span>(<span class="string">"fruitQueue"</span>),</span><br><span class="line">            key = <span class="string">"fruit"</span></span><br><span class="line">            ,exchange = <span class="meta">@Exchange</span>(<span class="string">"orderExchange"</span>)</span><br><span class="line">    ))</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">fruit</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        log.info(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>消息发起<br>消息发起的关键主要是使用amqpTemplate.convertAndSend方法<br>直接写一个测试类方便测试    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AmqpTemplate amqpTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//	void convertAndSend(String routingKey, Object message) throws AmqpException;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"myqueue"</span>,<span class="string">"now"</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//void convertAndSend(String exchange, String routingKey, Object message) throws AmqpException;</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessageToComputer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"orderExchange"</span>,<span class="string">"computer"</span>,<span class="string">"nowcomputer "</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessageTofruit</span><span class="params">()</span></span>&#123;</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"orderExchange"</span>,<span class="string">"fruit"</span>,<span class="string">"nowfruit "</span>+<span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我把方法对应的源码注释在方法上 仔细看就知道该传什么参数,<br>exchange,key,message</p>
 </li>
-</ul>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -431,7 +468,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
     <p><span class="copy-title">发布时间:</span>2020-05-05, 15:17:54</p>
-    <p><span class="copy-title">最后更新:</span>2020-05-05, 15:54:01</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-05, 16:36:07</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/05/RabbitMQ%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="RabbitMQ的基础使用">http://1007638786.github.io/2020/05/05/RabbitMQ%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

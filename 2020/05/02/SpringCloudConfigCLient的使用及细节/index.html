@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>异常捕获 | Hexo</title>
-  <meta name="keywords" content=" 日常学习记录 ">
-  <meta name="description" content="异常捕获 | Hexo">
+  <title>SpirngCloudConfigCLient的使用及细节 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="SpirngCloudConfigCLient的使用及细节 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -372,9 +372,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-异常捕获" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-SpringCloudConfigCLient的使用及细节" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">异常捕获</h1>
+        <h1 class="article-title">SpirngCloudConfigCLient的使用及细节</h1>
     
     <div class="article-meta">
         
@@ -382,21 +382,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+                <a href="javascript:" data-rel="springcloud">springcloud</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color2">日常学习记录</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-02 10:06:10'>2020-01-17 17:32</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-02 15:50:47'>2020-05-02 15:12</time>
         
     </div>
     <div class="article-meta">
@@ -434,12 +428,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.imooc.sell.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.sell.config.ProjectUrl;</span><br><span class="line"><span class="keyword">import</span> com.imooc.sell.exception.SellerAuthorizeException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SellerAuthorizeExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ProjectUrl projectUrl;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(SellerAuthorizeException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handler</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:"</span></span><br><span class="line">                .concat(projectUrl.getWechatOpenAuthorize())</span><br><span class="line">                .concat(<span class="string">"/sell/seller/qrAuthorize?returnUrl="</span>)</span><br><span class="line">                .concat(projectUrl.getSell())</span><br><span class="line">                .concat(<span class="string">"/sell/seller/login"</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>记录一下使用的异常捕获 </p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br></pre></td></tr></table></figure></code></pre><p>注解  配合 @ExceptionHandler(异常类class)</p>
-<p>可以统一处理某一种或者多种异常<br>在某些特定场景 配合自定义异常使用<br>非常好用 </p>
-<hr>
-<p>补充注解<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseStatus</span>()</span><br></pre></td></tr></table></figure></p>
-<p>该注解可以控制捕获异常后返回的http状态码点进注解可以看到枚举类应对特定需求很好用</p>
+        <ul>
+<li><strong>SpringCloudConfigClient</strong><br>本来想和ConfigServer一起写的 但是client需要记的东西不少 单独写一章吧        </li>
+<li><strong>使用</strong>      <ol>
+<li>老套路 引入maven依赖      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-config-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<br><img src="peizhi.png" alt="">      </li>
+<li>修改application.yml为bootstrap.yml<br>bootstrap.yml的启动顺序是在application.yml之前，因为要先从ConfigServer上拉去配置文件,如果还使用之前的application.yml到了test.db那一步直接就报错了.       </li>
+</ol>
+</li>
+<li>ConfigClient使用的注意事项<ol>
+<li>如果eureka修改过端口号，那么你就不能把client注册eureka的相关配置写到远端git上，而且一般生产环境都是多台eureka，如果配置在远端client会从默认的8888端口去拉取配置，肯定会出问题。</li>
+<li>如果我的服务名叫order  我的git上有order.yml order-dev.yml 我需要order-dev.yml 然后我配置好了，注意看一下order服务的日志，拉取配置文件的时候，它会把order.yml 和order-dev.yml的配置同时拉取 并且把他们两个合并.<br>springcloud的本意我想应该是想一般我们有dev和test两个环境，把相同的公用的配置放在order里面,把需要修改的不同的配置放在另外的配置文件里面.使用的时候应该注意一下要不容易出现自以为的灵异事件.</li>
+</ol>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -449,12 +451,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>异常捕获</p>
+    <p><span class="copy-title">文章标题:</span>SpirngCloudConfigCLient的使用及细节</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-17, 17:32:02</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-02, 10:06:10</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/17/%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" title="异常捕获">http://1007638786.github.io/2020/01/17/%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-02, 15:12:41</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-02, 15:50:47</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/02/SpringCloudConfigCLient%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BB%86%E8%8A%82/" title="SpirngCloudConfigCLient的使用及细节">http://1007638786.github.io/2020/05/02/SpringCloudConfigCLient%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BB%86%E8%8A%82/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
