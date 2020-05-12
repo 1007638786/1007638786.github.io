@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>分布式session简单理解 | Hexo</title>
-  <meta name="keywords" content=" 日常学习记录 ">
-  <meta name="description" content="分布式session简单理解 | Hexo">
+  <title>java多线程的深入浅出 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="java多线程的深入浅出 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -380,9 +380,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-分布式session简单理解" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java多线程的深入浅出" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">分布式session简单理解</h1>
+        <h1 class="article-title">java多线程的深入浅出</h1>
     
     <div class="article-meta">
         
@@ -390,21 +390,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+                <a href="javascript:" data-rel="java基础">java基础</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color2">日常学习记录</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-17 14:04:38'>2020-01-14 16:17</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-11 16:57:32'>2020-05-11 14:39</time>
         
     </div>
     <div class="article-meta">
@@ -442,21 +436,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>什么是分布式系统？<br>在支持应用程序和服务的开发，可以利用物理架构有<strong>多个自治的处理元素，不共享主内存</strong>，但<strong>通过网络发送信息合作</strong>。</li>
-<li>分布式的特点     <ol>
-<li>多节点</li>
-<li>消息通讯</li>
-<li>不共享内存</li>
+        <ul>
+<li><strong>java多线程</strong><ul>
+<li>线程的创建</li>
+</ul>
+<ol>
+<li>继承Thread类</li>
+<li>实现Runnable接口</li>
+<li>使用ExecutorService、Callable、Future实现有返回结果的多线程（也就是使用了ExecutorService来 管理前面的三种方式）//todo。</li>
+</ol>
+<ul>
+<li>如何停止一个线程 </li>
+</ul>
+<ol>
+<li>使用退出标识 是线程的run方法完整的执行一次流程之后正常终止线程</li>
+<li>stop 废弃方法强制中断线程（不推荐）</li>
+<li>使用interrupt方法中断线程。 和使用退出标识差不多 但是如果使用了一些方法 sleep wait等等方法  会抛出InterruptedException异常  而且需要在catch中 修改共享变量的状态  </li>
+</ol>
+<ul>
+<li>常用方法</li>
+</ul>
+<ol>
+<li>Thread.sleep(毫秒) 使线程休眠多少毫秒</li>
+<li>yield()  让出处理器时间 下次谁抢到不一定</li>
+<li>join()  使一个线程强行插入运行</li>
+<li>start() 启动线程</li>
+</ol>
+<ul>
+<li>volatile关键字<br>一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义：    <ol>
+<li>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他 线程来说是立即可见的,volatile关键字会强制将修改的值立即写入主存。      </li>
+<li>禁止进行指令重排序。<br>volatile不是原子性操作什么叫保证部分有序性?<br>当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果 已经对后面的操作可见；在其后面的操作肯定还没有进行；    </li>
 </ol>
 </li>
-<li>分布式和集群的区别<br>分布式每个节点都可以是一个集群 集群并不一定是分布式 集群中间并不需要通讯 而分布式需要          </li>
-<li>分布式解决session问题<br>客户端 ———–nginx —————tomcat1  t2 t3      <ol>
-<li>iphash问题 如果客户始终访问的服务挂掉  就会无法访问到正确的服务 所以iphash并不通用    </li>
-<li>把用户的认证信息 session 拿出来 放到一个专门的服务中 常用redis集群    这样无论拆分服务还是集群方式都可以正确的拿到用户的认真信息  只需在登录的时候 处理好 key-value 使一个用户只对应一个唯一的key value 就好了  </li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -466,12 +480,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>分布式session简单理解</p>
+    <p><span class="copy-title">文章标题:</span>java多线程的深入浅出</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-14, 16:17:30</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-17, 14:04:38</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/14/%E5%88%86%E5%B8%83%E5%BC%8Fsession%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" title="分布式session简单理解">http://1007638786.github.io/2020/01/14/%E5%88%86%E5%B8%83%E5%BC%8Fsession%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-11, 14:39:02</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-11, 16:57:32</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/11/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" title="java多线程的深入浅出">http://1007638786.github.io/2020/05/11/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

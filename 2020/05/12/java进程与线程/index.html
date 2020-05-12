@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>分布式session简单理解 | Hexo</title>
-  <meta name="keywords" content=" 日常学习记录 ">
-  <meta name="description" content="分布式session简单理解 | Hexo">
+  <title>java进程与线程 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="java进程与线程 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -380,9 +380,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-分布式session简单理解" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-java进程与线程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">分布式session简单理解</h1>
+        <h1 class="article-title">java进程与线程</h1>
     
     <div class="article-meta">
         
@@ -390,21 +390,15 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+                <a href="javascript:" data-rel="java基础">java基础</a>
             
         </span>
         
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color2">日常学习记录</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-17 14:04:38'>2020-01-14 16:17</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-12 17:12:17'>2020-05-12 17:09</time>
         
     </div>
     <div class="article-meta">
@@ -442,21 +436,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>什么是分布式系统？<br>在支持应用程序和服务的开发，可以利用物理架构有<strong>多个自治的处理元素，不共享主内存</strong>，但<strong>通过网络发送信息合作</strong>。</li>
-<li>分布式的特点     <ol>
-<li>多节点</li>
-<li>消息通讯</li>
-<li>不共享内存</li>
+        <ul>
+<li><p>线程和进程的不同</p>
+<ol>
+<li>概念不同<br>进程是个有独立功能的实例，像浏览器 qq音乐之类的 启动之后都是一个进程<br>线程是cpu的基本调度单位，一个进程里包含一个或者多个线程          </li>
+<li>内存共享方式不同<br>进程之间不能之间访问和通讯，需要借助ipc完成进程间的通讯<br>线程之间通信起来很容易，可以直接访问共享的内存且不需要额外的处理。           </li>
+<li>拥有的资源不同<br>线程之间有很多东西都是共享的，最典型的就是代码块是共享的。<br>线程之间不共享的，每个线程都有独立的堆栈，线程的id         </li>
+<li>数量不同<br>一个进程里会有多个线程</li>
 </ol>
 </li>
-<li>分布式和集群的区别<br>分布式每个节点都可以是一个集群 集群并不一定是分布式 集群中间并不需要通讯 而分布式需要          </li>
-<li>分布式解决session问题<br>客户端 ———–nginx —————tomcat1  t2 t3      <ol>
-<li>iphash问题 如果客户始终访问的服务挂掉  就会无法访问到正确的服务 所以iphash并不通用    </li>
-<li>把用户的认证信息 session 拿出来 放到一个专门的服务中 常用redis集群    这样无论拆分服务还是集群方式都可以正确的拿到用户的认真信息  只需在登录的时候 处理好 key-value 使一个用户只对应一个唯一的key value 就好了  </li>
+<li><p>相同点<br>他们的生命周期很相似，<br>进程作为一个程序，他的生命周期就是被创建 然后执行他的认为 到被关闭 或者执行结束 消亡<br>线程和它也是很类似。</p>
+</li>
+</ul>
+<ul>
+<li>什么是多线程<br> 指一个程序或者进程中有多个线程同时运行；</li>
+</ul>
+<ul>
+<li>常见的多线程          <ol>
+<li>合租住房子</li>
+<li>抢火车票</li>
 </ol>
 </li>
+</ul>
+<ul>
+<li><p>为什么要使用多线程</p>
+<ol>
+<li>提高cpu的利用率</li>
+<li>提高处理速度<br>如果所有程序都是单线程的，就乱了。</li>
 </ol>
+<p>举例服务器可以一次性处理多个用户请求（多个线程请求），假如不适用多线程，服务器就一次处理一个用户的请求，<br>那么别的用户就需要 等待第一个用户完成他想做的事 才能被服务，这样用户体验极差。</p>
+</li>
+<li><p>什么情况适合使用多线程。</p>
+</li>
+<li><p>当程序中可串行的部分越多时 使用多线程的好处就越明显；<br>提高工作效率       </p>
+</li>
+</ul>
+<p>1.服务器处理多线程的请求<br>2. 迅雷的并行下载<br>3. 3. 压测</p>
+<ul>
+<li>多线程的局限性<ol>
+<li>性能，cpu在线程间来回切换有损耗</li>
+<li>对于一些很难并行的任务 很难高效并行（如鱼在鱼塘中长大的时间 不管你用多少个鱼塘很难改变鱼生长周期）</li>
+<li>数据安全问题 多线程中配合不天衣无缝 一但出现问题就会导致数据的不同步 ， 还有死锁和线程饥饿（线程太多导致有些线程始终抢不到运行时间导致长时间不运行）</li>
+</ol>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -466,12 +489,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>分布式session简单理解</p>
+    <p><span class="copy-title">文章标题:</span>java进程与线程</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-01-14, 16:17:30</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-17, 14:04:38</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/14/%E5%88%86%E5%B8%83%E5%BC%8Fsession%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" title="分布式session简单理解">http://1007638786.github.io/2020/01/14/%E5%88%86%E5%B8%83%E5%BC%8Fsession%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-12, 17:09:18</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-12, 17:12:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/12/java%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="java进程与线程">http://1007638786.github.io/2020/05/12/java%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
