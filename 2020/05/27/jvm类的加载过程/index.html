@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>微信小程序解密jdk修改问题 | Hexo</title>
+  <title>jvm类的加载过程 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="微信小程序解密jdk修改问题 | Hexo">
+  <meta name="description" content="jvm类的加载过程 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -388,9 +388,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-微信小程序解密jdk修改问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jvm类的加载过程" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">微信小程序解密jdk修改问题</h1>
+        <h1 class="article-title">jvm类的加载过程</h1>
     
     <div class="article-meta">
         
@@ -400,7 +400,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-27 16:57:30'>2019-12-27 16:41</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-27 17:55:05'>2020-05-27 17:55</time>
         
     </div>
     <div class="article-meta">
@@ -438,11 +438,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近公司开发微信小程序 解密获取手机号是 aes解密一报下面这个错<br>java.security.NoSuchAlgorithmException: Cannot find any provider supporting AES/CBC/PKCS7Padding<br>查询发现是java原生jdk不支持PKCS7Padding填充方式</p>
-<p>也尝试过改成PKCS5Padding 还是报错<br>在网上找到解决方法<br>解决方式：    </p>
-<p>   在jdk安装目录中（%JAVA_HOME%\jre\lib\ext）添加 jar 包 bcprov-jdk16-1.46.jar。(我添加的是这个，下载的最新的，<a href="http://central.maven.org/maven2/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar" target="_blank" rel="noopener">jar包下载链接</a>)</p>
-<p>   在jdk安装目录下（ %JAVA_HOME%\jre\lib\security ）修改 java.security 文件，将第74行(我的是在74行)的 security.provider.7=com.sun.security.sasl.Provider<br>   替换为<br>   security.provider.7=org.bouncycastle.jce.provider.BouncyCastleProvider</p>
-<p>问题解决！</p>
+        <hr>
+<p>title:  jvm类的加载过程<br>date: 2020-05-27 15:43:26<br>categoriest:  jvm<br>​—<br><strong>类的加载过程</strong></p>
+<p><img src="011.png" alt="">      </p>
+<ol>
+<li><p><strong>加载（Loading）</strong>         </p>
+<p>通过一个类的全类名来获取类的二进制字节流存放在方法区。（主要组件，各种ClassLoader）    </p>
+<p>官方一点的语言：</p>
+<p><img src="014.png" alt="">  </p>
+</li>
+<li><p><strong>链接（Linking）</strong>          </p>
+<ol>
+<li><p><u>验证（Verification）</u>           </p>
+<p> 校验字节码文件中的信息是否符合虚拟机要求，保证加载类的正确性。        </p>
+</li>
+<li><p><u>准备（Preparation）</u>         </p>
+<p>为类变量（静态变量）分配内存并且设置该类变量的值为默认初始值及零值（比如int为0 boolean false）   </p>
+<p><strong>不会为实例变量分配初始值.</strong></p>
+</li>
+<li><p><u>解析（Resolution）</u>  </p>
+<p>将常量池内的符号引用转换为直接引用的过程。//todo</p>
+<p><img src="016.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li><p><strong>初始化（Initialization）</strong></p>
+</li>
+</ol>
+<p>​         初始化姐u但就是执行类构造器方法<clinit>()的过程。（若该类有父类要先保证父类的<clinit>的方法执行完毕）  </p>
+<p>​          初始化完成后才会会把链接时准备阶段的静态变量的值赋予它;</p>
+<p>​          <clinit>方法在多线程中被同步加锁</p>
+<p>​          <img src="017.png" alt=""></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -452,12 +478,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>微信小程序解密jdk修改问题</p>
+    <p><span class="copy-title">文章标题:</span>jvm类的加载过程</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-27, 16:41:04</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-27, 16:57:30</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/" title="微信小程序解密jdk修改问题">http://1007638786.github.io/2019/12/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%A7%A3%E5%AF%86jdk%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-27, 17:55:05</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-27, 17:55:05</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/27/jvm%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" title="jvm类的加载过程">http://1007638786.github.io/2020/05/27/jvm%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
