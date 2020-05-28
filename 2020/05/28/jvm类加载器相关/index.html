@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>java多线程的深入浅出 | Hexo</title>
+  <title>jvm类加载器相关 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="java多线程的深入浅出 | Hexo">
+  <meta name="description" content="jvm类加载器相关 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
@@ -404,9 +404,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-java多线程的深入浅出" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jvm类加载器相关" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">java多线程的深入浅出</h1>
+        <h1 class="article-title">jvm类加载器相关</h1>
     
     <div class="article-meta">
         
@@ -414,7 +414,7 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="java基础">java基础</a>
+                <a href="javascript:" data-rel="jvm">jvm</a>
             
         </span>
         
@@ -422,7 +422,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-05-11 16:57:32'>2020-05-11 14:39</time>
+        创建时间:<time class="date" title='更新时间: 2020-05-28 16:17:23'>2020-05-28 13:29</time>
         
     </div>
     <div class="article-meta">
@@ -444,7 +444,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载器相关"><span class="toc-text">类加载器相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-常见类加载器"><span class="toc-text">1. 常见类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类加载器加载一个类大致过程"><span class="toc-text">2. 类加载器加载一个类大致过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-类加载机制"><span class="toc-text">3. 类加载机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-双亲委派机制的优点"><span class="toc-text">4. 双亲委派机制的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-双亲委派图解及类加载器图解"><span class="toc-text">5. 双亲委派图解及类加载器图解</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -460,41 +460,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><strong>java多线程</strong><ul>
-<li>线程的创建</li>
-</ul>
+        <h1 id="类加载器相关"><a href="#类加载器相关" class="headerlink" title="类加载器相关"></a>类加载器相关</h1><h2 id="1-常见类加载器"><a href="#1-常见类加载器" class="headerlink" title="1. 常见类加载器"></a>1. 常见类加载器</h2><p>​      <strong>接下来所提到的父类子类并不是继承关系 三个常用的类加载器也不是继承的关系</strong></p>
 <ol>
-<li>继承Thread类</li>
-<li>实现Runnable接口</li>
-<li>使用ExecutorService、Callable、Future实现有返回结果的多线程（也就是使用了ExecutorService来 管理前面的三种方式）//todo。</li>
+<li><strong>BootStrapClassLoader（引导类加载器）</strong>: 用来加载java的核心类,不继承ClassLoader，用C++实现。由于引导类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，所以不允许直接通过引用进行操作。（无法直接获取 例如用string来获取它的classLoader返回null）</li>
+<li><strong>ExtensionClassLoader(扩展类加载器)</strong>: 负责加载jre的扩展目录，lib/ext或者由java.ext.dirs系统属性指定的目录中的JAR包的类。由Java语言实现，父类加载器为null（也就是BootStrapClassLoader）；</li>
+<li><strong>SystemClassLoader（系统（应用）类加载器）</strong>：被称为系统（也称为应用）类加载器，它负责在JVM启动时加载来自Java命令的-classpath选项、java.class.path系统属性，或者CLASSPATH换将变量所指定的JAR包和类路径。程序可以通过ClassLoader的静态方法getSystemClassLoader()来获取系统类加载器。如果没有特别指定，则用户自定义的类加载器都以此类加载器作为父加载器。由Java语言实现，父类加载器为ExtClassLoader。            </li>
 </ol>
-<ul>
-<li>如何停止一个线程 </li>
-</ul>
-<ol>
-<li>使用退出标识 是线程的run方法完整的执行一次流程之后正常终止线程</li>
-<li>stop 废弃方法强制中断线程（不推荐）</li>
-<li>使用interrupt方法中断线程。 和使用退出标识差不多 但是如果使用了一些方法 sleep wait等等方法  会抛出InterruptedException异常  而且需要在catch中 修改共享变量的状态  </li>
-</ol>
-<ul>
-<li>常用方法</li>
-</ul>
-<ol>
-<li>Thread.sleep(毫秒) 使线程休眠多少毫秒</li>
-<li>yield()  让出处理器时间 下次谁抢到不一定</li>
-<li>join()  使一个线程强行插入运行</li>
-<li>start() 启动线程</li>
-</ol>
-<ul>
-<li>volatile关键字<br>一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义：    <ol>
-<li>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他 线程来说是立即可见的,volatile关键字会强制将修改的值立即写入主存。      </li>
-<li>禁止进行指令重排序。<br>volatile不是原子性操作什么叫保证部分有序性?<br>当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果 已经对后面的操作可见；在其后面的操作肯定还没有进行；    </li>
-</ol>
+<h2 id="2-类加载器加载一个类大致过程"><a href="#2-类加载器加载一个类大致过程" class="headerlink" title="2. 类加载器加载一个类大致过程"></a>2. 类加载器加载一个类大致过程</h2><ol>
+<li><p>检测此Class是否载入过，即在缓冲区中是否有此Class，如果有直接进入第8步，否则进入第2步.</p>
 </li>
-</ul>
+<li><p>如果没有父类加载器，则要么Parent是根类加载器，要么本身就是根类加载器，则跳到第4步，如果父类加载器存在，则进入第3步。</p>
 </li>
+<li><p>请求使用父类加载器去载入目标类，如果载入成功则跳至第8步，否则接着执行第5步。</p>
+</li>
+<li><p>请求使用根类加载器去载入目标类，如果载入成功则跳至第8步，否则跳至第7步。</p>
+</li>
+<li><p>当前类加载器尝试寻找Class文件，如果找到则执行第6步，如果找不到则执行第7步。</p>
+</li>
+<li><p>从文件中载入Class，成功后跳至第8步。</p>
+</li>
+<li><p>抛出ClassNotFountException异常。</p>
+</li>
+<li><p>返回对应的java.lang.Class对象。</p>
+</li>
+</ol>
+<h2 id="3-类加载机制"><a href="#3-类加载机制" class="headerlink" title="3. 类加载机制"></a>3. 类加载机制</h2><ul>
+<li>全盘负责:所谓全盘负责，就是当一个类加载器负责加载某个Class时，该Class所依赖和引用其他Class也将由该类加载器负责载入，除非显示使用另外一个类加载器来载入。</li>
+<li>双亲委派机制: 所谓的双亲委派，则是先让父类加载器试图加载该Class，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。通俗的讲：就是一个类加载器加载一个类时，首先交由他的父类加载，如果父类有父类就先交由父类的父类加载以此类推，如果父类可以加载此类就由父类加载，如果父类不能加载此类，就由自己加载。</li>
+<li>缓存机制：缓存机制保证每次加载类的时候class都会被缓存，每次加载类时，当缓存区没有这个类的class，系统才会去读取这个类的二进制流，转化为class对象放到缓存区里。这就是为很么修改了Class后，必须重新启动JVM，程序所做的修改才会生效的原因。</li>
 </ul>
+<h2 id="4-双亲委派机制的优点"><a href="#4-双亲委派机制的优点" class="headerlink" title="4. 双亲委派机制的优点"></a>4. 双亲委派机制的优点</h2><ol>
+<li>有效防止类的重复加载，逐级向上，一个类加载器加载之后别的类就不会再加载这个类。不会出现多个object之类的情况。</li>
+<li>防止别人修改java核心api，Java核心都由bootstrapClassLoader加载 。</li>
+</ol>
+<h2 id="5-双亲委派图解及类加载器图解"><a href="#5-双亲委派图解及类加载器图解" class="headerlink" title="5. 双亲委派图解及类加载器图解"></a>5. 双亲委派图解及类加载器图解</h2><p><img src="033.png" alt=""></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
@@ -504,12 +503,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>java多线程的深入浅出</p>
+    <p><span class="copy-title">文章标题:</span>jvm类加载器相关</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-05-11, 14:39:02</p>
-    <p><span class="copy-title">最后更新:</span>2020-05-11, 16:57:32</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/11/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" title="java多线程的深入浅出">http://1007638786.github.io/2020/05/11/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</a>
+    <p><span class="copy-title">发布时间:</span>2020-05-28, 13:29:46</p>
+    <p><span class="copy-title">最后更新:</span>2020-05-28, 16:17:23</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/05/28/jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9B%B8%E5%85%B3/" title="jvm类加载器相关">http://1007638786.github.io/2020/05/28/jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9B%B8%E5%85%B3/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
