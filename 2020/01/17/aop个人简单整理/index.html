@@ -506,70 +506,70 @@
 <pre><code class="java">
 
 
-<span class="meta">@Controller</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopController</span> </span>{
+@Controller
+public class AopController {
 
-    <span class="meta">@RequestMapping</span>(<span class="string">"test"</span>)
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">aaa</span><span class="params">()</span></span>{
-        System.out.println(<span class="string">"我是aaa方法体"</span>);
-        <span class="keyword">int</span> i=<span class="number">1</span>/<span class="number">0</span>;
+    @RequestMapping(&quot;test&quot;)
+    public void aaa(){
+        System.out.println(&quot;我是aaa方法体&quot;);
+        int i=1/0;
     }
 
-    <span class="meta">@RequestMapping</span>(<span class="string">"testAround"</span>)
-    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">aroundAopTest</span><span class="params">(String param)</span></span>{
-        System.out.println(<span class="string">"环绕通知参数:"</span>+param);
+    @RequestMapping(&quot;testAround&quot;)
+    public  void  aroundAopTest(String param){
+        System.out.println(&quot;环绕通知参数:&quot;+param);
     }
 
 }         
 </code></pre>
 <p>切面类代码     </p>
 <pre><code class="java">
-<span class="keyword">package</span> com.wcf.aop.Aspect;
+package com.wcf.aop.Aspect;
 
-<span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;
-<span class="keyword">import</span> org.aspectj.lang.annotation.*;
-<span class="keyword">import</span> org.springframework.stereotype.Component;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
-<span class="keyword">import</span> javax.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
-<span class="meta">@Component</span>
-<span class="meta">@Aspect</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AopAspect</span> </span>{
+@Component
+@Aspect
+public class AopAspect {
 
-    <span class="meta">@Pointcut</span>(<span class="string">"execution ( public * com.wcf.aop.Controller.Aop*.*(..) )"</span>)
-    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">testAspect</span><span class="params">()</span></span>{
-
-    }
-    <span class="meta">@Pointcut</span>(<span class="string">"execution ( public * com.wcf.aop.Controller.AopController.aroundAopTest(String) ) &amp;&amp; args(param)"</span>)
-    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">aroundAspect</span><span class="params">(String param)</span></span>{
+    @Pointcut(&quot;execution ( public * com.wcf.aop.Controller.Aop*.*(..) )&quot;)
+    public  void  testAspect(){
 
     }
+    @Pointcut(&quot;execution ( public * com.wcf.aop.Controller.AopController.aroundAopTest(String) ) &amp;&amp; args(param)&quot;)
+    public  void  aroundAspect(String param){
 
-    <span class="meta">@Before</span>(<span class="string">"testAspect()"</span>)
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">before</span><span class="params">()</span></span>{
-        System.out.println(<span class="string">"我在你前面执行"</span>);
-    }
-    <span class="meta">@After</span>(<span class="string">"testAspect()"</span>)
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>   <span class="title">after</span><span class="params">()</span></span>{
-        System.out.println(<span class="string">"我在你后面执行"</span>);
     }
 
-
-
-    <span class="meta">@AfterThrowing</span>(<span class="string">"testAspect()"</span>)
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterThrowingGame</span><span class="params">()</span></span>{
-        System.out.println(<span class="string">"出异常我就执行了"</span>);
+    @Before(&quot;testAspect()&quot;)
+    public void  before(){
+        System.out.println(&quot;我在你前面执行&quot;);
+    }
+    @After(&quot;testAspect()&quot;)
+    public void   after(){
+        System.out.println(&quot;我在你后面执行&quot;);
     }
 
-    <span class="meta">@Around</span>(<span class="string">"aroundAspect(param)"</span>)
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Around</span><span class="params">(ProceedingJoinPoint pjp,String param)</span></span>{
-        <span class="keyword">try</span> {
-            System.out.println(<span class="string">"我在环绕通知方法体前面运行"</span>);
+
+
+    @AfterThrowing(&quot;testAspect()&quot;)
+    public void doAfterThrowingGame(){
+        System.out.println(&quot;出异常我就执行了&quot;);
+    }
+
+    @Around(&quot;aroundAspect(param)&quot;)
+    public void Around(ProceedingJoinPoint pjp,String param){
+        try {
+            System.out.println(&quot;我在环绕通知方法体前面运行&quot;);
             pjp.proceed();
-            System.out.println(<span class="string">"aop环绕通知获取方法体参数："</span>+param);
-            System.out.println(<span class="string">"我在环绕通知方法体后面运行"</span>);
-        } <span class="keyword">catch</span> (Throwable throwable) {
-            System.out.println(<span class="string">"我在环绕通知方法体报错我运行了"</span>);
+            System.out.println(&quot;aop环绕通知获取方法体参数：&quot;+param);
+            System.out.println(&quot;我在环绕通知方法体后面运行&quot;);
+        } catch (Throwable throwable) {
+            System.out.println(&quot;我在环绕通知方法体报错我运行了&quot;);
             throwable.printStackTrace();
         }
     }

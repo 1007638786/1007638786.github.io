@@ -503,13 +503,196 @@
       
         <p>先貼上 测试用的controller service代码       </p>
 <p>controller:      </p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/skill"</span>)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecKillController</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> SecKillService secKillService;</span><br><span class="line">	</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 查询秒杀活动特价商品的信息</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> productId</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@GetMapping</span>(<span class="string">"/query/&#123;productId&#125;"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">query</span><span class="params">(@PathVariable String productId)</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">   </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> secKillService.querySecKillProductInfo(productId);</span><br><span class="line">   &#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 秒杀，没有抢到获得"哎呦喂,xxxxx",抢到了会返回剩余的库存量</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> productId</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@GetMapping</span>(<span class="string">"/order/&#123;productId&#125;"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">skill</span><span class="params">(@PathVariable String productId)</span><span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">   </span>&#123;</span><br><span class="line">       log.info(<span class="string">"@skill request, productId:"</span> + productId);</span><br><span class="line">       secKillService.orderProductMockDiffUser(productId);</span><br><span class="line">       <span class="keyword">return</span> secKillService.querySecKillProductInfo(productId);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>serviceimpl:</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecKillServiceImpl</span> <span class="keyword">implements</span> <span class="title">SecKillService</span> </span>&#123;</span><br><span class="line">	<span class="comment">/*超时时间 10s*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIMEOUT = <span class="number">10</span> * <span class="number">1000</span>; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 国庆活动，皮蛋粥特价，限量100000份</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> Map&lt;String,Integer&gt; products;</span><br><span class="line">    <span class="keyword">static</span> Map&lt;String,Integer&gt; stock;</span><br><span class="line">    <span class="keyword">static</span> Map&lt;String,String&gt; orders;</span><br><span class="line">    <span class="keyword">static</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 模拟多个表，商品信息表，库存表，秒杀成功订单表</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        products = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        stock = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        orders = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        products.put(<span class="string">"123456"</span>, <span class="number">100000</span>);</span><br><span class="line">        stock.put(<span class="string">"123456"</span>, <span class="number">100000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">queryMap</span><span class="params">(String productId)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"国庆活动，皮蛋粥特价，限量份"</span></span><br><span class="line">                + products.get(productId)</span><br><span class="line">                +<span class="string">" 还剩："</span> + stock.get(productId)+<span class="string">" 份"</span></span><br><span class="line">                +<span class="string">" 该商品成功下单用户数目："</span></span><br><span class="line">                +  orders.size() +<span class="string">" 人"</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">querySecKillProductInfo</span><span class="params">(String productId)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.queryMap(productId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">orderProductMockDiffUser</span><span class="params">(String productId)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">/*加锁*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*1.查询该商品库存，为0则活动结束。*/</span></span><br><span class="line">        <span class="keyword">int</span> stockNum = stock.get(productId);</span><br><span class="line">        <span class="keyword">if</span>(stockNum == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SellException(<span class="number">100</span>,<span class="string">"活动结束"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">/*2.下单(模拟不同用户openid不同)*/</span></span><br><span class="line">            orders.put(KeyUtil.genUniqueKey(),productId);</span><br><span class="line">            <span class="comment">/*3.减库存*/</span></span><br><span class="line">            stockNum =stockNum-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            stock.put(productId,stockNum);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*解锁*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p><img src="aaa.png" alt=""><br>使用ab压测过后（100次请求 50个线程同时进行）明显数据已经不对了</p>
+<pre><code> ```java       
+ @RestController
+ @RequestMapping(&quot;/skill&quot;)
+ @Slf4j
+ public class SecKillController {
+
+    @Autowired
+    private SecKillService secKillService;
+
+    /**
+     * 查询秒杀活动特价商品的信息
+     * @param productId
+     * @return
+     */
+    @GetMapping(&quot;/query/{productId}&quot;)
+    public String query(@PathVariable String productId)throws Exception
+    {
+        return secKillService.querySecKillProductInfo(productId);
+    }
+
+
+    /**
+     * 秒杀，没有抢到获得&quot;哎呦喂,xxxxx&quot;,抢到了会返回剩余的库存量
+     * @param productId
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(&quot;/order/{productId}&quot;)
+    public String skill(@PathVariable String productId)throws Exception
+    {
+        log.info(&quot;@skill request, productId:&quot; + productId);
+        secKillService.orderProductMockDiffUser(productId);
+        return secKillService.querySecKillProductInfo(productId);
+    }
+ }</code></pre><pre><code>
+serviceimpl:
+
+    ```java
+    @Service
+    public class SecKillServiceImpl implements SecKillService {
+        /*超时时间 10s*/
+        private static final int TIMEOUT = 10 * 1000; 
+
+
+
+        /**
+         * 国庆活动，皮蛋粥特价，限量100000份
+         */
+        static Map&lt;String,Integer&gt; products;
+        static Map&lt;String,Integer&gt; stock;
+        static Map&lt;String,String&gt; orders;
+        static
+        {
+            /**
+             * 模拟多个表，商品信息表，库存表，秒杀成功订单表
+             */
+            products = new HashMap&lt;&gt;();
+            stock = new HashMap&lt;&gt;();
+            orders = new HashMap&lt;&gt;();
+            products.put(&quot;123456&quot;, 100000);
+            stock.put(&quot;123456&quot;, 100000);
+        }
+
+        private String queryMap(String productId)
+        {
+            return &quot;国庆活动，皮蛋粥特价，限量份&quot;
+                    + products.get(productId)
+                    +&quot; 还剩：&quot; + stock.get(productId)+&quot; 份&quot;
+                    +&quot; 该商品成功下单用户数目：&quot;
+                    +  orders.size() +&quot; 人&quot; ;
+        }
+
+        @Override
+        public String querySecKillProductInfo(String productId)
+        {
+            return this.queryMap(productId);
+        }
+
+        @Override
+        public void orderProductMockDiffUser(String productId)
+        {
+            /*加锁*/
+
+            /*1.查询该商品库存，为0则活动结束。*/
+            int stockNum = stock.get(productId);
+            if(stockNum == 0) {
+                throw new SellException(100,&quot;活动结束&quot;);
+            }else {
+                /*2.下单(模拟不同用户openid不同)*/
+                orders.put(KeyUtil.genUniqueKey(),productId);
+                /*3.减库存*/
+                stockNum =stockNum-1;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                stock.put(productId,stockNum);
+            }
+
+            /*解锁*/
+
+        }
+    }</code></pre><p><img src="aaa.png" alt=""><br>使用ab压测过后（100次请求 50个线程同时进行）明显数据已经不对了</p>
 <p>多线程的问题一般会想到使用 synchronized 关键字</p>
 <p>测试之后发现synchronized 确实能解决现有问题但是也有缺点<br> 1.他会使方法编程单线程的 一次只有一个线程能访问 大大的降低了效率  但是同时也保持了准确度 可以说勉强是一种解决办法但是不是最优的<br> 2.控制的不够细腻 比如上面的方法 需要传订单号  假如我有两个商品 s1和s2 s1抢的人多 s2抢的人少  但是他们都是用这一个下单接口 一次只有一个人能访问 就会导致非常不效率<br> 3.只能单点控制  加入我把这个抢单接口做了集群  通过负载均衡过后 还是会出现之前的情况<br> 这三个缺点说明synchronized关键字并不能完美解决问题接下来就引出用redis实现分布式锁       </p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.sell.service;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpUriRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line">	</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisLock</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line">	</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> key(商品id)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> value(当前时间加上超时时间)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span>   <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">(String key ,String value)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">        redis setnx命令</span></span><br><span class="line"><span class="comment">        如果返回true 说明没有加锁 可以正常运行 返回false相反</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">if</span>(stringRedisTemplate.opsForValue().setIfAbsent(key, value))&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="comment">/*</span></span><br><span class="line"><span class="comment">           第一个if主要防止后面逻辑代码报错 导致没有正常解锁</span></span><br><span class="line"><span class="comment">           运用超时时间控制 如果锁的时间超过了当前时间说明锁已经超时了</span></span><br><span class="line"><span class="comment">           锁超时之后允许覆盖旧锁</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">           String nowTime = stringRedisTemplate.opsForValue().get(key);</span><br><span class="line">           <span class="keyword">if</span>(!StringUtils.isEmpty(nowTime)&amp;&amp; Long.parseLong(nowTime)&lt;System.currentTimeMillis())&#123;</span><br><span class="line">	</span><br><span class="line">               <span class="comment">/*</span></span><br><span class="line"><span class="comment">               第二个if防止有两个线程同时检测到锁超时 而且两个value相同</span></span><br><span class="line"><span class="comment">               但是执行getset总有个先后顺序</span></span><br><span class="line"><span class="comment">               拿到旧锁的时间与上面获取的旧锁时间一致说明是先获取到旧锁的一个</span></span><br><span class="line"><span class="comment">               第二个人再次执行getset之后 获取到的旧时间是上一个线程的value</span></span><br><span class="line"><span class="comment">               与之前获取的时间不同所以就不会成功</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">               String oldTime = stringRedisTemplate.opsForValue().getAndSet(key, value);</span><br><span class="line">               <span class="keyword">if</span> (!StringUtils.isEmpty(oldTime)&amp;&amp;oldTime.equals(nowTime))&#123;</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">	</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">(String key,String value)</span></span>&#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           String currentTime = stringRedisTemplate.opsForValue().get(key);</span><br><span class="line">           <span class="keyword">if</span> (!StringUtils.isEmpty(currentTime)&amp;&amp;currentTime.equals(value))&#123;</span><br><span class="line">               stringRedisTemplate.opsForValue().getOperations().delete(key);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">           log.error(<span class="string">"【redis分布式锁】解锁异常, &#123;&#125;"</span>, e);</span><br><span class="line">       &#125;</span><br><span class="line">	</span><br><span class="line">   &#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>加上redis锁之后使用ab压测测试 测试结果如下<br><img src="cg.jpg" alt=""><br>可以看到和之前的完全不一样 不会出现超卖的情况        </p>
-<p>代码注释写的非常清楚了低下就不再写了<br>上面使用synchronized关键字的遇到的问题也都完美解决了<br>1.效率问题，当没有拿到锁的时候可以返回常用的抢单提示语，及时响应不会出现卡在那不懂的情况，用户体验提升效率提升。<br>2.控制细腻的问题  redis存储以商品id为key，每个商品一把锁，完美解决a商品抢的人多b商品抢的人少的情况。<br>3.单点问题，使用redis锁 不管业务代码做不做集群，都是从一个redis或者redis集群中取锁，这样就也完美处理了synchronized关键字只能处理单点的问题</p>
+<pre><code> ```java    
+ package com.imooc.sell.service;
 
+ import lombok.extern.slf4j.Slf4j;
+ import org.apache.http.client.methods.HttpUriRequest;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.data.redis.core.StringRedisTemplate;
+ import org.springframework.stereotype.Component;
+ import org.springframework.util.StringUtils;
+
+ @Component
+ @Slf4j
+ public class RedisLock {
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    /**
+     *
+     * @param key(商品id)
+     * @param value(当前时间加上超时时间)
+     * @return
+     */
+    public   boolean lock(String key ,String value){
+
+
+        /*
+         redis setnx命令
+         如果返回true 说明没有加锁 可以正常运行 返回false相反
+         */
+        if(stringRedisTemplate.opsForValue().setIfAbsent(key, value)){
+            return true;
+       }else{
+            /*
+            第一个if主要防止后面逻辑代码报错 导致没有正常解锁
+            运用超时时间控制 如果锁的时间超过了当前时间说明锁已经超时了
+            锁超时之后允许覆盖旧锁
+             */
+            String nowTime = stringRedisTemplate.opsForValue().get(key);
+            if(!StringUtils.isEmpty(nowTime)&amp;&amp; Long.parseLong(nowTime)&lt;System.currentTimeMillis()){
+
+                /*
+                第二个if防止有两个线程同时检测到锁超时 而且两个value相同
+                但是执行getset总有个先后顺序
+                拿到旧锁的时间与上面获取的旧锁时间一致说明是先获取到旧锁的一个
+                第二个人再次执行getset之后 获取到的旧时间是上一个线程的value
+                与之前获取的时间不同所以就不会成功
+                 */
+                String oldTime = stringRedisTemplate.opsForValue().getAndSet(key, value);
+                if (!StringUtils.isEmpty(oldTime)&amp;&amp;oldTime.equals(nowTime)){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public void unlock(String key,String value){
+        try {
+            String currentTime = stringRedisTemplate.opsForValue().get(key);
+            if (!StringUtils.isEmpty(currentTime)&amp;&amp;currentTime.equals(value)){
+                stringRedisTemplate.opsForValue().getOperations().delete(key);
+            }
+        }catch (Exception e){
+            log.error(&quot;【redis分布式锁】解锁异常, {}&quot;, e);
+        }
+
+    }
+
+ } </code></pre><pre><code>加上redis锁之后使用ab压测测试 测试结果如下     
+![](cg.jpg)
+可以看到和之前的完全不一样 不会出现超卖的情况        
+
+代码注释写的非常清楚了低下就不再写了     
+上面使用synchronized关键字的遇到的问题也都完美解决了     
+1.效率问题，当没有拿到锁的时候可以返回常用的抢单提示语，及时响应不会出现卡在那不懂的情况，用户体验提升效率提升。     
+2.控制细腻的问题  redis存储以商品id为key，每个商品一把锁，完美解决a商品抢的人多b商品抢的人少的情况。      
+3.单点问题，使用redis锁 不管业务代码做不做集群，都是从一个redis或者redis集群中取锁，这样就也完美处理了synchronized关键字只能处理单点的问题
+
+
+
+
+
+</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
     </div>

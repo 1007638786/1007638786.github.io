@@ -499,9 +499,25 @@
 <li><p>SpringCloudStream    </p>
 <ol>
 <li><p>引入maven依赖      </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-stream-rabbit&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<pre><code class="java">   &lt;dependency&gt;
+       &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+       &lt;artifactId&gt;spring-cloud-starter-stream-rabbit&lt;/artifactId&gt;
+   &lt;/dependency&gt;</code></pre>
+</li>
 <li><p>新增配置文件<br>destination: minestream 通过这个配置吧输出和输入队列保持在一个主题上<br>group分组   我们经常会遇到一个场景 abc 全是订单服务 order  他的前置服务发出一个消息我们通常只需要一个服务来消费这个消息 这时候我们就需要把这个3个服务配置成一个组  每当有消息来的时候 stream会帮我们把消息发给一个服务      </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">stream:</span><br><span class="line">  bindings:</span><br><span class="line">    #消息分组  是自定义命名和Streamclient里面保持一致</span><br><span class="line">    myInPut:</span><br><span class="line">      #指定输入通道对应的主题名</span><br><span class="line">      destination: minestream</span><br><span class="line">#配置组</span><br><span class="line">      group: order</span><br><span class="line">    myOutPut:</span><br><span class="line">      #指定输入通道对应的主题名</span><br><span class="line">      destination: minestream</span><br><span class="line">      #使消息在mq中存储为application/json的格式</span><br><span class="line">      #content-type: application/json</span><br></pre></td></tr></table></figure>
+<pre><code class="java">stream:
+ bindings:
+   #消息分组  是自定义命名和Streamclient里面保持一致
+   myInPut:
+     #指定输入通道对应的主题名
+     destination: minestream
+     #配置组
+     group: order
+   myOutPut:
+     #指定输入通道对应的主题名
+     destination: minestream
+     #使消息在mq中存储为application/json的格式
+     #content-type: application/json</code></pre>
 </li>
 <li><p>使用<br>添加一个接口<br><img src="inteface.png" alt=""><br>如何消费<br>首先用注解绑定刚才写的接口（@EnableBinding（xxx.class））<br>然后在方法上监听输入队列(@StreamLstener（输入队列）)<br><img src="listener.png" alt=""><br>如何发送消息<br>把写的接口注入进来调用output().send(使用MessageBuild创建message)方法<br><img src="sendMessage.png" alt=""></p>
 </li>

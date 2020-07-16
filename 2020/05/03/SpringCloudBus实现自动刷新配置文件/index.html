@@ -497,7 +497,11 @@
       
         <ul>
 <li>使用流程<ol>
-<li>引入maven依赖   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-bus-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>引入maven依赖   <pre><code class="maven">   &lt;dependency&gt;
+       &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+       &lt;artifactId&gt;spring-cloud-starter-bus-amqp&lt;/artifactId&gt;
+   &lt;/dependency&gt;</code></pre>
+</li>
 <li>需要提前安装好rabbitmq         </li>
 <li>修改配置文件<br>在ConfigServer的配置文件上加上 rabbitmq和暴露出刷新配置文件的配置<br><img src="peizhi.png" alt=""><br>在ConfigClient的配置文件上加上 rabbitmq的配置</li>
 <li>在git上使用WebHooks 使每次pull代码时候访问ConfigServer暴露出来的接口     </li>
@@ -506,7 +510,10 @@
 </li>
 <li>注意事项<ol>
 <li>访问刷新配置文件的接口事 必须使用post请求</li>
-<li>访问配置刷新的接口有两种方法 一种是/actuator/bus-refresh 一种是/monitor<br>使用/monitor的使用服务端ConfigServer需要加上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-config-monitor&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<li>访问配置刷新的接口有两种方法 一种是/actuator/bus-refresh 一种是/monitor<br>使用/monitor的使用服务端ConfigServer需要加上<pre><code class="maven">   &lt;dependency&gt;
+       &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+       &lt;artifactId&gt;spring-cloud-config-monitor&lt;/artifactId&gt;
+   &lt;/dependency&gt;</code></pre>
 该依赖然后如果访问成功之后只刷新服务端而客服端不刷新需要在ConfigClient的配置文件里面加上<pre><code class="java">bus:
  id: ${spring.application.name}:${spring.cloud.config.profile}:${random.value}</code></pre>
 凭记忆先写这么多 之后有忘得再补充</li>

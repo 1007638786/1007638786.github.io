@@ -535,8 +535,213 @@
 <li><p>贴一个我们项目的nginx配置作为参考                          </p>
 </li>
 </ol>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  root;</span><br><span class="line"><span class="attribute">daemon</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">master_process</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">4</span>;</span><br><span class="line"><span class="comment">#worker_rlimit 4g;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="attribute">error_log</span>  logs/error.log  <span class="literal">info</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">worker_rlimit_nofile</span> <span class="number">102400</span>;</span><br><span class="line"><span class="attribute">worker_rlimit_core</span>   <span class="number">2G</span>;</span><br><span class="line"><span class="attribute">working_directory</span>    /tmp;</span><br><span class="line"></span><br><span class="line"><span class="attribute">pid</span>        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">use</span> <span class="literal">epoll</span>;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">4096</span>;</span><br><span class="line">    <span class="attribute">multi_listen</span> unix:/tmp/http <span class="number">8082</span>;</span><br><span class="line">    <span class="attribute">multi_listen</span> unix:/tmp/rtmp <span class="number">1935</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">dynamic_refresh_interval</span> <span class="number">5s</span>;</span><br><span class="line">    <span class="attribute">dynamic_domain_buckets</span>   <span class="number">1001</span>;</span><br><span class="line">    <span class="attribute">resolver</span> <span class="number">114.114.114.114</span>  valid=<span class="number">1m</span>;</span><br><span class="line">    <span class="attribute">resolver_timeout</span> <span class="number">30s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#stream_zone buckets=1024 streams=4096;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#dynamic_conf conf/nginx_dynamic.conf 10;</span></span><br><span class="line"><span class="comment">#dynamic_log logs/dynamic.log info;</span></span><br><span class="line"></span><br><span class="line"><span class="section">rtmp</span> &#123;</span><br><span class="line"><span class="comment"># log_format log_bandwidth '&#123;"app":"$app","name":"$name","bitrate":$bitrate,"args":"$args","timestamp":$ntp,"ts":"$time_local","type":"$command","remote_addr":"$remote_addr","domain":"$domain"&#125;';</span></span><br><span class="line"><span class="comment"># access_log logs/bandwidth.log log_bandwidth trunc=60s;</span></span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">1935</span>;</span><br><span class="line">        <span class="attribute">serverid</span> <span class="number">000</span>;</span><br><span class="line">        <span class="attribute">out_queue</span> <span class="number">2048</span>;</span><br><span class="line">        <span class="attribute">server_name</span> <span class="number">11.15.238.245</span>;</span><br><span class="line">        <span class="attribute">rtmp_auto_pull</span> <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">rtmp_auto_pull_port</span> unix:/tmp/rtmp;</span><br><span class="line">   </span><br><span class="line">        <span class="attribute">application</span> push &#123;</span><br><span class="line">            <span class="attribute">live</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">push</span> rtmp://127.0.0.1/live app=live;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="attribute">application</span> live &#123;</span><br><span class="line">           <span class="attribute">live_record</span> <span class="literal">off</span>;</span><br><span class="line">           <span class="attribute">live_record_path</span> /srv/program/ffmpeg;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">recorder</span> r1&#123;</span><br><span class="line">                <span class="attribute">record</span> all;</span><br><span class="line">                <span class="attribute">record_path</span> /srv/program/ffmpeg;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">live</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">hls</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">hls_path</span> /tmp/hls;</span><br><span class="line">            <span class="attribute">hls_fragment</span> <span class="number">10s</span>;</span><br><span class="line">           <span class="attribute">hls_max_fragment</span> <span class="number">20s</span>;</span><br><span class="line">            <span class="attribute">hls_playlist_length</span> <span class="number">2m</span>;</span><br><span class="line">            <span class="attribute">hls_type</span> live;</span><br><span class="line">           <span class="attribute">hls_continuous</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">hls_fragment_slicing</span> aligned; </span><br><span class="line">            <span class="attribute">hls2</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">mpegts_cache_time</span> <span class="number">20s</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">hls2_fragment</span> <span class="number">2000ms</span>;</span><br><span class="line">            <span class="attribute">hls2_max_fragment</span> <span class="number">3000ms</span>;</span><br><span class="line">            <span class="attribute">hls2_playlist_length</span> <span class="number">6000ms</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">wait_key</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">wait_video</span> <span class="literal">on</span>;</span><br><span class="line">           <span class="attribute">cache_time</span> <span class="number">1s</span>;</span><br><span class="line">            <span class="attribute">send_all</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">low_latency</span> <span class="literal">off</span>;</span><br><span class="line">            <span class="attribute">fix_timestamp</span> <span class="number">2s</span>;</span><br><span class="line"><span class="comment"># h265 codecid, default 12</span></span><br><span class="line">            <span class="attribute">hevc_codecid</span>  <span class="number">12</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_X</span>-Forwarded-For" "<span class="variable">$http_X</span>-Real-IP" "<span class="variable">$host</span>"'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#reset_server_name www.test1.com www.test2.com;</span></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">upstream</span> hlsm &#123;</span><br><span class="line"><span class="comment">#        hash $remote_addr consistent;</span></span><br><span class="line">        <span class="attribute">hash</span> <span class="variable">$arg_session</span> consistent;</span><br><span class="line">        <span class="comment"># 这里需要注意，你要开几个进程，就要按这个规则写几条记录</span></span><br><span class="line">        <span class="attribute">server</span> unix:/tmp/http.0;</span><br><span class="line">        <span class="attribute">server</span> unix:/tmp/http.1;</span><br><span class="line">        <span class="attribute">server</span> unix:/tmp/http.2;</span><br><span class="line">        <span class="attribute">server</span> unix:/tmp/http.3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">8082</span>;</span><br><span class="line"><span class="comment">#        listen 443 ssl;</span></span><br><span class="line"><span class="comment">#        ssl_certificate     /usr/local/pingos/cert/full_chain.pem;</span></span><br><span class="line"><span class="comment">#        ssl_certificate_key /usr/local/pingos/cert/privkey.pem;</span></span><br><span class="line">        <span class="attribute">location</span> /rtmp_stat &#123;</span><br><span class="line">            <span class="attribute">rtmp_stat</span> all;</span><br><span class="line">            <span class="attribute">rtmp_stat_stylesheet</span> /stat.xsl;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> /xstat &#123;</span><br><span class="line">            <span class="attribute">rtmp_stat</span> all;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> /sys_stat &#123;</span><br><span class="line">            sys_stat;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ .mp4$</span> &#123;</span><br><span class="line">            <span class="attribute">root</span> html;</span><br><span class="line">            <span class="comment">#mp4;</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> /control &#123;</span><br><span class="line">            <span class="attribute">rtmp_control</span> all;</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="attribute">location</span> /flv &#123;</span><br><span class="line">             <span class="attribute">flv_live</span> <span class="number">1935</span> app=live;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Credentials"</span> <span class="string">"true"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Methods"</span> <span class="string">"*"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Headers"</span> <span class="string">"Content-Type,Access-Token"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Expose-Headers"</span> <span class="string">"*"</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="attribute">location</span> /ts &#123;</span><br><span class="line">             <span class="attribute">ts_live</span> <span class="number">1935</span> app=live;</span><br><span class="line">             <span class="attribute">expires</span> -<span class="number">1</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Credentials"</span> <span class="string">"true"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Methods"</span> <span class="string">"*"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Headers"</span> <span class="string">"Content-Type,Access-Token"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Expose-Headers"</span> <span class="string">"*"</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="attribute">location</span> /hls &#123;</span><br><span class="line">            <span class="comment"># Serve HLS fragments</span></span><br><span class="line">             <span class="section">types</span> &#123;</span><br><span class="line">                 application/vnd.apple.mpegurl m3u8;</span><br><span class="line">                 video/mp2t ts;</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="attribute">root</span> /tmp;</span><br><span class="line">             <span class="attribute">expires</span> -<span class="number">1</span>;</span><br><span class="line">             <span class="attribute">add_header</span> Cache-Control <span class="literal">no</span>-cache;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Credentials"</span> <span class="string">"true"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Methods"</span> <span class="string">"*"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Headers"</span> <span class="string">"Content-Type,Access-Token"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Expose-Headers"</span> <span class="string">"*"</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> /hlsm &#123;</span><br><span class="line">             <span class="attribute">hls2_live</span> <span class="number">1935</span> app=live;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">'Access-Control-Allow-Origin'</span> <span class="string">'*'</span>;</span><br><span class="line">             <span class="attribute">add_header</span> Cache-Control <span class="literal">no</span>-cache;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Credentials"</span> <span class="string">"true"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Methods"</span> <span class="string">"*"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Allow-Headers"</span> <span class="string">"Content-Type,Access-Token"</span>;</span><br><span class="line">             <span class="attribute">add_header</span> <span class="string">"Access-Control-Expose-Headers"</span> <span class="string">"*"</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">location</span> /hls2 &#123;</span><br><span class="line">             <span class="attribute">proxy_buffering</span> <span class="literal">on</span>;</span><br><span class="line">             <span class="attribute">proxy_buffer_size</span> <span class="number">4k</span>; </span><br><span class="line">             <span class="attribute">proxy_buffers</span> <span class="number">8</span> <span class="number">1M</span>;</span><br><span class="line">             <span class="attribute">proxy_busy_buffers_size</span> <span class="number">2M</span>;</span><br><span class="line">             <span class="attribute">proxy_max_temp_file_size</span> <span class="number">0</span>;</span><br><span class="line">             <span class="attribute">set</span> <span class="variable">$hls_args</span> location=/hls2&amp;scheme=<span class="variable">$scheme</span>;</span><br><span class="line"><span class="comment">#             if ($args) &#123;</span></span><br><span class="line"><span class="comment">#                 set $hls_args $args&amp;location=/hls2&amp;scheme=$scheme;</span></span><br><span class="line"><span class="comment">#             &#125;</span></span><br><span class="line">             <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">             <span class="attribute">rewrite</span><span class="regexp"> ^/(.*)/(.*)\.(.*)$</span> /hlsm/<span class="variable">$2</span>.<span class="variable">$3</span>?<span class="variable">$hls_args</span> <span class="literal">break</span>;</span><br><span class="line">             <span class="attribute">proxy_pass</span> http://hlsm;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">location</span> / &#123;</span><br><span class="line">             <span class="attribute">chunked_transfer_encoding</span> <span class="literal">on</span>;</span><br><span class="line">             <span class="attribute">root</span> html/;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="nginx">user  root;
+daemon on;
+master_process on;
+worker_processes  4;
+#worker_rlimit 4g;
 
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+error_log  logs/error.log  info;
+
+worker_rlimit_nofile 102400;
+worker_rlimit_core   2G;
+working_directory    /tmp;
+
+pid        logs/nginx.pid;
+
+events {
+    use epoll;
+    worker_connections  4096;
+    multi_listen unix:/tmp/http 8082;
+    multi_listen unix:/tmp/rtmp 1935;
+
+    dynamic_refresh_interval 5s;
+    dynamic_domain_buckets   1001;
+    resolver 114.114.114.114  valid=1m;
+    resolver_timeout 30s;
+}
+
+#stream_zone buckets=1024 streams=4096;
+
+#dynamic_conf conf/nginx_dynamic.conf 10;
+#dynamic_log logs/dynamic.log info;
+
+rtmp {
+# log_format log_bandwidth &#39;{&quot;app&quot;:&quot;$app&quot;,&quot;name&quot;:&quot;$name&quot;,&quot;bitrate&quot;:$bitrate,&quot;args&quot;:&quot;$args&quot;,&quot;timestamp&quot;:$ntp,&quot;ts&quot;:&quot;$time_local&quot;,&quot;type&quot;:&quot;$command&quot;,&quot;remote_addr&quot;:&quot;$remote_addr&quot;,&quot;domain&quot;:&quot;$domain&quot;}&#39;;
+# access_log logs/bandwidth.log log_bandwidth trunc=60s;
+
+    server {
+        listen 1935;
+        serverid 000;
+        out_queue 2048;
+        server_name 11.15.238.245;
+        rtmp_auto_pull on;
+        rtmp_auto_pull_port unix:/tmp/rtmp;
+
+        application push {
+            live on;
+            push rtmp://127.0.0.1/live app=live;
+        }
+
+
+        application live {
+           live_record off;
+           live_record_path /srv/program/ffmpeg;
+
+            recorder r1{
+                record all;
+                record_path /srv/program/ffmpeg;
+            }
+
+            live on;
+            hls on;
+            hls_path /tmp/hls;
+            hls_fragment 10s;
+           hls_max_fragment 20s;
+            hls_playlist_length 2m;
+            hls_type live;
+           hls_continuous on;
+            hls_fragment_slicing aligned; 
+            hls2 on;
+            mpegts_cache_time 20s;
+
+            hls2_fragment 2000ms;
+            hls2_max_fragment 3000ms;
+            hls2_playlist_length 6000ms;
+
+            wait_key on;
+            wait_video on;
+           cache_time 1s;
+            send_all on;
+            low_latency off;
+            fix_timestamp 2s;
+# h265 codecid, default 12
+            hevc_codecid  12;
+        }
+    }
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+                      &#39;&quot;$http_user_agent&quot; &quot;$http_X-Forwarded-For&quot; &quot;$http_X-Real-IP&quot; &quot;$host&quot;&#39;;
+
+
+    access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #reset_server_name www.test1.com www.test2.com;
+    #gzip  on;
+
+    upstream hlsm {
+#        hash $remote_addr consistent;
+        hash $arg_session consistent;
+        # 这里需要注意，你要开几个进程，就要按这个规则写几条记录
+        server unix:/tmp/http.0;
+        server unix:/tmp/http.1;
+        server unix:/tmp/http.2;
+        server unix:/tmp/http.3;
+    }
+
+    server {
+        listen 8082;
+#        listen 443 ssl;
+#        ssl_certificate     /usr/local/pingos/cert/full_chain.pem;
+#        ssl_certificate_key /usr/local/pingos/cert/privkey.pem;
+        location /rtmp_stat {
+            rtmp_stat all;
+            rtmp_stat_stylesheet /stat.xsl;
+        }
+
+        location /xstat {
+            rtmp_stat all;
+        }
+
+        location /sys_stat {
+            sys_stat;
+        }
+        location ~ .mp4$ {
+            root html;
+            #mp4;
+        }
+
+        location /control {
+            rtmp_control all;
+        }
+         location /flv {
+             flv_live 1935 app=live;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+         location /ts {
+             ts_live 1935 app=live;
+             expires -1;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+         location /hls {
+            # Serve HLS fragments
+             types {
+                 application/vnd.apple.mpegurl m3u8;
+                 video/mp2t ts;
+             }
+             root /tmp;
+             expires -1;
+             add_header Cache-Control no-cache;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+
+        location /hlsm {
+             hls2_live 1935 app=live;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header Cache-Control no-cache;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+
+         location /hls2 {
+             proxy_buffering on;
+             proxy_buffer_size 4k; 
+             proxy_buffers 8 1M;
+             proxy_busy_buffers_size 2M;
+             proxy_max_temp_file_size 0;
+             set $hls_args location=/hls2&amp;scheme=$scheme;
+#             if ($args) {
+#                 set $hls_args $args&amp;location=/hls2&amp;scheme=$scheme;
+#             }
+             proxy_set_header Host $host:$server_port;
+             rewrite ^/(.*)/(.*)\.(.*)$ /hlsm/$2.$3?$hls_args break;
+             proxy_pass http://hlsm;
+         }
+
+         location / {
+             chunked_transfer_encoding on;
+             root html/;
+         }
+    }
+}</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
