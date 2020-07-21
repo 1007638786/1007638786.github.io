@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>RTSP视频流播放几种解决方式 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="RTSP视频流播放几种解决方式 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http:&#x2F;&#x2F;1007638786.github.io&#x2F;categories&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-17T03:27:38.581Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/my.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my.jpg" />
+</a>
+<div class="author">
+    <span>wcf</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(27)</small></div></li>
+    
+        
+            
+            <li><div data-rel="日常学习记录">日常学习记录<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="springcloud">springcloud<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="java基础">java基础<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="jvm">jvm<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="27">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">日常学习记录</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">springcloud</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="日常学习记录 "
+           href="/2020/07/16/rtsp-shi-pin-liu-bo-fang-ji-chong-jie-jue-fang-shi/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RTSP视频流播放几种解决方式">RTSP视频流播放几种解决方式</span>
+            <span class="post-date" title="2020-07-16 10:29:53">2020/07/16</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/05/05/rabbitmq-de-ji-chu-shi-yong/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RabbitMQ的基础使用">RabbitMQ的基础使用</span>
+            <span class="post-date" title="2020-05-05 15:17:54">2020/05/05</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/05/03/springcloudbus-shi-xian-zi-dong-shua-xin-pei-zhi-wen-jian/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudBus实现自动刷新配置文件">SpringCloudBus实现自动刷新配置文件</span>
+            <span class="post-date" title="2020-05-03 17:43:23">2020/05/03</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/05/02/springcloudconfigclient-de-shi-yong-ji-xi-jie/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpirngCloudConfigCLient的使用及细节">SpirngCloudConfigCLient的使用及细节</span>
+            <span class="post-date" title="2020-05-02 15:12:41">2020/05/02</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/05/01/springcloudconfigserver-he-client-ji-lu/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudConfigServer和Client记录">SpringCloudConfigServer和Client记录</span>
+            <span class="post-date" title="2020-05-01 09:43:44">2020/05/01</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/05/05/springcloudstream-xiao-xi-qu-dong/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SpringCloudStream消息驱动">SpringCloudStream消息驱动</span>
+            <span class="post-date" title="2020-05-05 15:57:02">2020/05/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/15/aaa/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="aaa">aaa</span>
+            <span class="post-date" title="2019-10-15 10:09:52">2019/10/15</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2020/01/17/aop-ge-ren-jian-dan-zheng-li/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="aop个人简单整理">aop个人简单整理</span>
+            <span class="post-date" title="2020-01-17 09:44:03">2020/01/17</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/04/21/eureka-de-gao-ke-yong/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="eureka的高可用">eureka的高可用</span>
+            <span class="post-date" title="2020-04-21 15:18:02">2020/04/21</span>
+        </a>
+        
+        <a  class="java基础 "
+           href="/2020/05/11/java-duo-xian-cheng-de-shen-ru-qian-chu/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java多线程的深入浅出">java多线程的深入浅出</span>
+            <span class="post-date" title="2020-05-11 14:39:02">2020/05/11</span>
+        </a>
+        
+        <a  class="java基础 "
+           href="/2020/05/12/java-jin-cheng-yu-xian-cheng/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="java进程与线程">java进程与线程</span>
+            <span class="post-date" title="2020-05-12 17:09:18">2020/05/12</span>
+        </a>
+        
+        <a  class="jvm "
+           href="/2020/05/30/jvm-cheng-xu-ji-shu-qi/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="jvm程序计数器">jvm程序计数器</span>
+            <span class="post-date" title="2020-05-30 16:22:08">2020/05/30</span>
+        </a>
+        
+        <a  class="jvm "
+           href="/2020/05/28/jvm-lei-jia-zai-qi-xiang-guan/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="jvm类加载器相关">jvm类加载器相关</span>
+            <span class="post-date" title="2020-05-28 13:29:46">2020/05/28</span>
+        </a>
+        
+        <a  class="jvm "
+           href="/2020/05/28/jvm-lei-de-jia-zai-guo-cheng/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="jvm类的加载过程">jvm类的加载过程</span>
+            <span class="post-date" title="2020-05-28 16:26:54">2020/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/redis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="redis">redis</span>
+            <span class="post-date" title="2019-10-30 15:04:18">2019/10/30</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2020/01/19/springboot-ji-cheng-websocket/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="springboot集成websocket">springboot集成websocket</span>
+            <span class="post-date" title="2020-01-19 16:41:22">2020/01/19</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/04/21/springcloud-xin-de-kai-shi/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="springcloud新的开始">springcloud新的开始</span>
+            <span class="post-date" title="2020-04-21 15:03:23">2020/04/21</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/04/27/springcloud-fu-wu-jian-de-tong-xun-feign/"
+           data-tag="springcloud"
+           data-author="" >
+            <span class="post-title" title="springcloud服务间的通-feign">springcloud服务间的通-feign</span>
+            <span class="post-date" title="2020-04-27 16:33:25">2020/04/27</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/04/26/springcloud-fu-wu-jian-de-tong-xun-resttemplate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="springcloud服务间的通讯-RestTemplate">springcloud服务间的通讯-RestTemplate</span>
+            <span class="post-date" title="2020-04-26 16:02:03">2020/04/26</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2020/01/14/fen-bu-shi-session-jian-dan-li-jie/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="分布式session简单理解">分布式session简单理解</span>
+            <span class="post-date" title="2020-01-14 16:17:30">2020/01/14</span>
+        </a>
+        
+        <a  class=""
+           href="/2020/01/23/chu-zhong/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初衷">初衷</span>
+            <span class="post-date" title="2020-01-23 09:40:52">2020/01/23</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2020/01/26/gan-huo-man-man-de-redis-shi-xian-fen-bu-shi-suo-guo-nian-huan-shi-zai-jia-xue-xi-bi-jiao-an-quan/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="干货满满的redis实现分布式锁（过年还是在家学习比较安全）">干货满满的redis实现分布式锁（过年还是在家学习比较安全）</span>
+            <span class="post-date" title="2020-01-26 10:05:02">2020/01/26</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2020/01/17/yi-chang-bu-huo/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="异常捕获">异常捕获</span>
+            <span class="post-date" title="2020-01-17 17:32:02">2020/01/17</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/27/wei-xin-xiao-cheng-xu-jie-mi-jdk-xiu-gai-wen-ti/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微信小程序解密jdk修改问题">微信小程序解密jdk修改问题</span>
+            <span class="post-date" title="2019-12-27 16:41:04">2019/12/27</span>
+        </a>
+        
+        <a  class="springcloud "
+           href="/2020/04/22/wei-fu-wu-zhong-de-ke-fu-duan-fa-xian-he-fu-wu-duan-fa-xian/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微服务中的客服端发现和服务端发现">微服务中的客服端发现和服务端发现</span>
+            <span class="post-date" title="2020-04-22 10:45:11">2020/04/22</span>
+        </a>
+        
+        <a  class="日常学习记录 "
+           href="/2019/12/09/dian-can-xi-tong-xue-xi-ri-zhi-ding-dan-xin-zeng-liu-cheng-ji-lu/"
+           data-tag="日常学习记录"
+           data-author="" >
+            <span class="post-title" title="点餐系统学习日志-订单新建">点餐系统学习日志-订单新建</span>
+            <span class="post-date" title="2019-12-09 17:22:23">2019/12/09</span>
+        </a>
+        
+        <a  class="jvm "
+           href="/2020/06/30/xu-ni-ji-zhan-xiang-guan-zhan/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="虚拟机栈相关--栈">虚拟机栈相关--栈</span>
+            <span class="post-date" title="2020-06-30 15:51:50">2020/06/30</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-RTSP视频流播放几种解决方式" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">RTSP视频流播放几种解决方式</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="日常学习记录">日常学习记录</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-07-16 10:41:33'>2020-07-16 10:29</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RTSP视频流播放几种解决方式"><span class="toc-text">RTSP视频流播放几种解决方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、使用FFMPEG把RTSP转RTMP-拉流转码到Nginx-Nginx-rtmp-moudle"><span class="toc-text">一、使用FFMPEG把RTSP转RTMP 拉流转码到Nginx +Nginx-rtmp-moudle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、使用FFMPEG-PingOS"><span class="toc-text">二、使用FFMPEG+PingOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、经验分享"><span class="toc-text">三、经验分享</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RTSP视频流播放几种解决方式"><a href="#RTSP视频流播放几种解决方式" class="headerlink" title="RTSP视频流播放几种解决方式"></a>RTSP视频流播放几种解决方式</h1><h2 id="一、使用FFMPEG把RTSP转RTMP-拉流转码到Nginx-Nginx-rtmp-moudle"><a href="#一、使用FFMPEG把RTSP转RTMP-拉流转码到Nginx-Nginx-rtmp-moudle" class="headerlink" title="一、使用FFMPEG把RTSP转RTMP 拉流转码到Nginx +Nginx-rtmp-moudle"></a>一、使用FFMPEG把RTSP转RTMP 拉流转码到Nginx +Nginx-rtmp-moudle</h2><ol>
+<li><p>首先要先下载ffmpeg  </p>
+<p>第三方下载：<a href="https://linux.softpedia.com/get/Multimedia/Video/FFmpeg-3054.shtml" target="_blank" rel="noopener">https://linux.softpedia.com/get/Multimedia/Video/FFmpeg-3054.shtml</a> ，</p>
+<p>官网：<a href="http://ffmpeg.org/download.html，github官网也有。" target="_blank" rel="noopener">http://ffmpeg.org/download.html，github官网也有。</a></p>
+<p>安装参考<a href="https://www.jianshu.com/p/1be929404528" target="_blank" rel="noopener">https://www.jianshu.com/p/1be929404528</a>   </p>
+<p>中间可能因环境不同坑比较多，网上的解决方案也比较成熟可以多搜索。</p>
+</li>
+<li><p>安装Nginx和Nginx-rtmp-moudle  </p>
+<p>主要步骤   解压完Nginx包后 ./configruation –add-module=/你的路径/nginx-rtmp-module-master 加上这个模块 然后make makeinstall    </p>
+<p>之后 修改Nginx.conf  加上rtmp相应的配置    安装和配置参考：<a href="https://www.cnblogs.com/bluesky-yuan/p/10148700.html" target="_blank" rel="noopener">https://www.cnblogs.com/bluesky-yuan/p/10148700.html</a>    这个坑相对较少 。</p>
+</li>
+<li><p>完成上述两部之后可以开始推流了  </p>
+<p>推流命令示例：ffmpeg -re -rtsp_transport tcp -i rtsp://admin:<a href="mailto:njxyj2019@11.15.159.26" target="_blank" rel="noopener">njxyj2019@11.15.159.26</a>:554/h264  -tune zerolatency -vcodec libx264   -b:v 400k -s 720x576 -r 25 -f flv  rtmp://你的ip:你在Nginx.conf下修改的rtmp端口/conf中的application/自定义流名（随便）  </p>
+<p> 关于ffmpeg的各种参数指令 含义 可以通过百度获取 太多了 就不写了</p>
+</li>
+<li><p>上面完成后基本就可以通过 rtmp://你的ip:你在Nginx.conf下修改的rtmp端口/conf中的application/自定义流名（随便）   访问nginx来获取视频流播放了</p>
+</li>
+</ol>
+<h2 id="二、使用FFMPEG-PingOS"><a href="#二、使用FFMPEG-PingOS" class="headerlink" title="二、使用FFMPEG+PingOS"></a>二、使用FFMPEG+PingOS</h2><ol>
+<li><p>同上第一步</p>
+</li>
+<li><p>安装 <a href="https://pingos.io/" target="_blank" rel="noopener">PingOS</a> 全中文官网 安装配置一条龙 都有（如果你的服务器不能连接外网，你需要下载安装后把release.sh 脚本中的代码 一点点自己执行 ，所有需要下载的操作都提前下载好安装好 放到服务器上再执行之后的操作。）</p>
+<p>PingOS主要还是基于Nginx及他的一些moudle，可以说主要基于Nginx-rtmp-mouldle </p>
+<p>所以说如果觉得对流的流畅度及一些别的不满意主要还是通过修改内置的nginx.conf来调整。</p>
+</li>
+<li><p>拉流推送到PingOS， obs或者FFmpeg 都可以实现  ffmpeg还是同上的第三步   obs可以自行百度</p>
+</li>
+</ol>
+<h2 id="三、经验分享"><a href="#三、经验分享" class="headerlink" title="三、经验分享"></a>三、经验分享</h2><p>推荐使用FFMPEG+PingOS</p>
+<ol>
+<li><p>测试表明使用PingOS的首帧播放和延迟很低，rtmp流稳定流畅很少卡顿</p>
+</li>
+<li><p>PingOS 支持多种播放模式  hls hls+ rtmp  ts  flv ， 支持多种协议 rtmp http 和https（听说rtsp也在开发中）   同一个推流 可以有多种播放方式 </p>
+<p>测试之后 rtmp实时性最高 延迟最低  但是有些前端播放器会获取首帧之后就卡住 （由于没有前端配合没有测试很多播放器） rtmp的劣势主要还是依赖于flash</p>
+<p>hls 的延迟和流畅度也很不错，但是实时性差一些，hls主要通过储存切片的方式实现播放，可以通过配置每个切片的大小为多少，把存储的切片播完时 每次切换切片会微微卡顿一下 ， 优势 可以通过http协议请求  不依赖于flash</p>
+<p>别的方式测试了之后延迟和首帧播放时间很长   也没有过多研究 如有需要可以对应官网多多研究配置。</p>
+</li>
+<li><p>贴一个我们项目的nginx配置作为参考                          </p>
+</li>
+</ol>
+<pre><code class="nginx">user  root;
+daemon on;
+master_process on;
+worker_processes  4;
+#worker_rlimit 4g;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+error_log  logs/error.log  info;
+
+worker_rlimit_nofile 102400;
+worker_rlimit_core   2G;
+working_directory    /tmp;
+
+pid        logs/nginx.pid;
+
+events {
+    use epoll;
+    worker_connections  4096;
+    multi_listen unix:/tmp/http 8082;
+    multi_listen unix:/tmp/rtmp 1935;
+
+    dynamic_refresh_interval 5s;
+    dynamic_domain_buckets   1001;
+    resolver 114.114.114.114  valid=1m;
+    resolver_timeout 30s;
+}
+
+#stream_zone buckets=1024 streams=4096;
+
+#dynamic_conf conf/nginx_dynamic.conf 10;
+#dynamic_log logs/dynamic.log info;
+
+rtmp {
+# log_format log_bandwidth &#39;{&quot;app&quot;:&quot;$app&quot;,&quot;name&quot;:&quot;$name&quot;,&quot;bitrate&quot;:$bitrate,&quot;args&quot;:&quot;$args&quot;,&quot;timestamp&quot;:$ntp,&quot;ts&quot;:&quot;$time_local&quot;,&quot;type&quot;:&quot;$command&quot;,&quot;remote_addr&quot;:&quot;$remote_addr&quot;,&quot;domain&quot;:&quot;$domain&quot;}&#39;;
+# access_log logs/bandwidth.log log_bandwidth trunc=60s;
+
+    server {
+        listen 1935;
+        serverid 000;
+        out_queue 2048;
+        server_name 11.15.238.245;
+        rtmp_auto_pull on;
+        rtmp_auto_pull_port unix:/tmp/rtmp;
+
+        application push {
+            live on;
+            push rtmp://127.0.0.1/live app=live;
+        }
+
+
+        application live {
+           live_record off;
+           live_record_path /srv/program/ffmpeg;
+
+            recorder r1{
+                record all;
+                record_path /srv/program/ffmpeg;
+            }
+
+            live on;
+            hls on;
+            hls_path /tmp/hls;
+            hls_fragment 10s;
+           hls_max_fragment 20s;
+            hls_playlist_length 2m;
+            hls_type live;
+           hls_continuous on;
+            hls_fragment_slicing aligned; 
+            hls2 on;
+            mpegts_cache_time 20s;
+
+            hls2_fragment 2000ms;
+            hls2_max_fragment 3000ms;
+            hls2_playlist_length 6000ms;
+
+            wait_key on;
+            wait_video on;
+           cache_time 1s;
+            send_all on;
+            low_latency off;
+            fix_timestamp 2s;
+# h265 codecid, default 12
+            hevc_codecid  12;
+        }
+    }
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+                      &#39;&quot;$http_user_agent&quot; &quot;$http_X-Forwarded-For&quot; &quot;$http_X-Real-IP&quot; &quot;$host&quot;&#39;;
+
+
+    access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #reset_server_name www.test1.com www.test2.com;
+    #gzip  on;
+
+    upstream hlsm {
+#        hash $remote_addr consistent;
+        hash $arg_session consistent;
+        # 这里需要注意，你要开几个进程，就要按这个规则写几条记录
+        server unix:/tmp/http.0;
+        server unix:/tmp/http.1;
+        server unix:/tmp/http.2;
+        server unix:/tmp/http.3;
+    }
+
+    server {
+        listen 8082;
+#        listen 443 ssl;
+#        ssl_certificate     /usr/local/pingos/cert/full_chain.pem;
+#        ssl_certificate_key /usr/local/pingos/cert/privkey.pem;
+        location /rtmp_stat {
+            rtmp_stat all;
+            rtmp_stat_stylesheet /stat.xsl;
+        }
+
+        location /xstat {
+            rtmp_stat all;
+        }
+
+        location /sys_stat {
+            sys_stat;
+        }
+        location ~ .mp4$ {
+            root html;
+            #mp4;
+        }
+
+        location /control {
+            rtmp_control all;
+        }
+         location /flv {
+             flv_live 1935 app=live;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+         location /ts {
+             ts_live 1935 app=live;
+             expires -1;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+         location /hls {
+            # Serve HLS fragments
+             types {
+                 application/vnd.apple.mpegurl m3u8;
+                 video/mp2t ts;
+             }
+             root /tmp;
+             expires -1;
+             add_header Cache-Control no-cache;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+
+        location /hlsm {
+             hls2_live 1935 app=live;
+             add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;
+             add_header Cache-Control no-cache;
+             add_header &quot;Access-Control-Allow-Credentials&quot; &quot;true&quot;;
+             add_header &quot;Access-Control-Allow-Methods&quot; &quot;*&quot;;
+             add_header &quot;Access-Control-Allow-Headers&quot; &quot;Content-Type,Access-Token&quot;;
+             add_header &quot;Access-Control-Expose-Headers&quot; &quot;*&quot;;
+         }
+
+         location /hls2 {
+             proxy_buffering on;
+             proxy_buffer_size 4k; 
+             proxy_buffers 8 1M;
+             proxy_busy_buffers_size 2M;
+             proxy_max_temp_file_size 0;
+             set $hls_args location=/hls2&amp;scheme=$scheme;
+#             if ($args) {
+#                 set $hls_args $args&amp;location=/hls2&amp;scheme=$scheme;
+#             }
+             proxy_set_header Host $host:$server_port;
+             rewrite ^/(.*)/(.*)\.(.*)$ /hlsm/$2.$3?$hls_args break;
+             proxy_pass http://hlsm;
+         }
+
+         location / {
+             chunked_transfer_encoding on;
+             root html/;
+         }
+    }
+}</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。邮件至 wcfinyourheart@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>RTSP视频流播放几种解决方式</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="wcf">wcf</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-07-16, 10:29:53</p>
+    <p><span class="copy-title">最后更新:</span>2020-07-16, 10:41:33</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/07/16/rtsp-shi-pin-liu-bo-fang-ji-chong-jie-jue-fang-shi/" title="RTSP视频流播放几种解决方式">http://1007638786.github.io/2020/07/16/rtsp-shi-pin-liu-bo-fang-ji-chong-jie-jue-fang-shi/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '412a3a7018dfd9afe5c5',
+            clientSecret: 'c0fd75220e60c48a21735abda8008dc88959bff3',
+            repo: '1007638786.github.io',
+            owner: '1007638786',
+            admin: ['1007638786'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#日常学习记录','#springcloud',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
